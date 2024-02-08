@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.nav-container{
+    background-color: grey;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    div{
+        &:hover{
+            cursor: pointer;
+        }
+        color: white;
+    }
+}
+.product{
+    display: flex;
+    justify-content: space-around;
+    
+}
+button{
+    padding: 10px;
+    &:hover{
+        cursor: pointer;
+    }
+}
