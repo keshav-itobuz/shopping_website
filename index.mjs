@@ -1,6 +1,6 @@
 import dbData from './storage.js';
 let container = document.getElementById('data-container');
-dbData.map((item) => {
+dbData.forEach((item) => {
     let card = document.createElement('div');
     card.setAttribute('class', 'card');
 
@@ -14,7 +14,8 @@ dbData.map((item) => {
     card.appendChild(name);
 
     let price = document.createElement('h4');
-    price.inneText = `$ ${item.price}`;
+    price.innerText = `$ ${item.price}`;
+    price.setAttribute('class', 'price')
     card.appendChild(price);
 
     let btn = document.createElement("button")
@@ -45,17 +46,20 @@ dbData.map((item) => {
     container.appendChild(card);
 });
 
-let arr = document.getElementsByClassName('add_cart');
+let addCartButton = document.getElementsByClassName('add_cart');
 let plusMinus = document.getElementsByClassName('counter');
+let addCart = document.getElementsByClassName('add_cart')
 let plus = document.getElementsByClassName('add');
 let minus = document.getElementsByClassName('sub');
 let count = document.getElementsByClassName('display');
 let cartItems = document.getElementById('cart_items');
 
-let obj = [];
-for (let i = 0; i < arr.length; i++) {
-    arr[i].addEventListener('click', () => {
-        arr[i].style.display = "none";
+let obj = JSON.parse(localStorage.getItem('key') || '[]');
+cartItems.innerText = obj.length;
+
+for (let i = 0; i < addCartButton.length; i++) {
+    addCartButton[i].addEventListener('click', () => {
+        addCartButton[i].style.display = "none";
         plusMinus[i].style.display = "block";
 
         let item = {
@@ -67,7 +71,13 @@ for (let i = 0; i < arr.length; i++) {
         };
         obj = JSON.parse(localStorage.getItem('key') || '[]');
         const index = obj.findIndex(value => value.id === item.id);
-        index === -1 ? obj.push(item) : obj[index].qty = item.qty;
+        if (index === -1) {
+            obj.push(item);
+            count[i].innerText = 1;
+        }
+        else {
+            count[i].innerText = obj[index].qty;
+        }
         localStorage.setItem('key', JSON.stringify(obj));
         cartItems.innerHTML = obj.length;
     })
@@ -78,20 +88,24 @@ for (let i = 0; i < arr.length; i++) {
             qty: count[i].innerText,
         };
         obj = JSON.parse(localStorage.getItem('key') || '[]');
-        const index = obj.findIndex(value => value.id === item.id);
-        index === -1 ? obj.push(item) : obj[index].qty = item.qty;
+        const index = obj.find(value => value.id === item.id);
+        index === -1 ? obj.push(item) : index.qty = item.qty;
         localStorage.setItem('key', JSON.stringify(obj));
         cartItems.innerHTML = obj.length;
     })
     minus[i].addEventListener('click', () => {
         count[i].innerText = Number(count[i].innerText) === 0 ? 0 : Number(count[i].innerText) - 1;
-        let item = {
-            id: dbData[i].id,
-            qty: count[i].innerText,
-        };
         obj = JSON.parse(localStorage.getItem('key') || '[]');
-        const index = obj.findIndex(value => value.id === item.id);
-        item.qty == 0 ? obj.splice(index, 1) : obj[index].qty = item.qty;
+        const index = obj.find(value => value.id === dbData[i].id);
+        if (index.qty < 2) {
+            index.qty = 0;
+            obj = obj.filter(ob => ob.id !== index.id)
+            addCart[i].style.display = "block";
+            plusMinus[i].style.display = "none"
+
+        } else {
+            index.qty--
+        }
         localStorage.setItem('key', JSON.stringify(obj));
         cartItems.innerHTML = obj.length;
     })
