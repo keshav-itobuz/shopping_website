@@ -1,6 +1,5 @@
 import dbData from './storage.js';
 let container = document.getElementById('data-container');
-
 dbData.map((item) => {
     let card = document.createElement('div');
     card.setAttribute('class', 'card');

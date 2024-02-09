@@ -12,6 +12,8 @@
 
 button {
   padding: 8px;
+  background-color: gray;
+  color: white;
 }
 button:hover {
   cursor: pointer;
@@ -74,7 +76,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
+  border: 0.3px solid black;
   width: 300px;
   padding: 10px;
 }

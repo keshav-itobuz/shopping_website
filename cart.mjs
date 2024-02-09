@@ -1,6 +1,6 @@
 obj = JSON.parse(localStorage.getItem('key') || '[]');
 
-let cartData = document.getElementById( "cart_data" );
+let cartData = document.getElementById( "data-container" );
 
 obj.map((item)=>{
 
