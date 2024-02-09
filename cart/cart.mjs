@@ -12,7 +12,6 @@ function renderCard() {
     let totalItem = document.getElementById('totalItem');
     let total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
 
-
     cartData.innerHTML = "";
 
     obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
