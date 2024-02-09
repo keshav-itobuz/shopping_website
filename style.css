@@ -100,7 +100,7 @@ a {
 }
 
 .total {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   background-color: gray;
   height: 20vh;
@@ -120,4 +120,10 @@ h2 {
 .total {
   padding-left: 20px;
   padding-top: 15px;
+}
+
+@media (min-width: 596px) {
+  .total {
+    position: absolute;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -1,7 +1,18 @@
-let obj = JSON.parse(localStorage.getItem('key') || '[]');
-let cartData = document.getElementById("cart-container");
 
 function renderCard() {
+    let obj = JSON.parse(localStorage.getItem('key') || '[]');
+    let cartData = document.getElementById("cart-container");
+    let counter = document.getElementsByClassName('counter');
+    let plus = document.getElementsByClassName('add');
+    let minus = document.getElementsByClassName('sub');
+    let count = document.getElementsByClassName('display');
+    let price = document.getElementsByClassName('price');
+    let card = document.getElementsByClassName('card')
+    let totalPrice = document.getElementById('totalCost');
+    let totalItem = document.getElementById('totalItem');
+    let total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
+
+
     cartData.innerHTML = "";
 
     obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
@@ -48,15 +59,7 @@ function renderCard() {
             cartData.appendChild(card);
 
         });
-    let counter = document.getElementsByClassName('counter');
-    let plus = document.getElementsByClassName('add');
-    let minus = document.getElementsByClassName('sub');
-    let count = document.getElementsByClassName('display');
-    let price = document.getElementsByClassName('price');
-    let card = document.getElementsByClassName('card')
-    let totalPrice = document.getElementById('totalCost');
-    let totalItem = document.getElementById('totalItem');
-    let total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
+
 
     for (let i = 0; i < counter.length; i++) {
         counter[i].style.display = "block";
@@ -79,7 +82,6 @@ function renderCard() {
                 obj[i].qty = 0;
                 obj = obj.filter(ob => ob.id !== obj[i].id)
                 card[i].style.display = "none";
-                renderCard();
             } else {
                 obj[i].qty--;
                 price[i].innerText = `$ ${obj[i].price * obj[i].qty}`;
@@ -87,7 +89,7 @@ function renderCard() {
             localStorage.setItem('key', JSON.stringify(obj));
             total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
             totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
-
+            renderCard();
         })
     }
     totalPrice.innerHTML = `Total cost : ${total}`;

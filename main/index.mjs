@@ -1,5 +1,15 @@
 import dbData from '../storage.js';
 let container = document.getElementById('data-container');
+let addCartButton = document.getElementsByClassName('add_cart');
+let plusMinus = document.getElementsByClassName('counter');
+let plus = document.getElementsByClassName('add');
+let minus = document.getElementsByClassName('sub');
+let count = document.getElementsByClassName('display');
+let itemCount = document.getElementById('cart_items');
+let obj = JSON.parse(localStorage.getItem('key') || '[]');
+
+
+itemCount.innerText = obj.length;
 
 dbData.forEach((item) => {
     let card = document.createElement('div');
@@ -46,16 +56,6 @@ dbData.forEach((item) => {
 
     container.appendChild(card);
 });
-
-let addCartButton = document.getElementsByClassName('add_cart');
-let plusMinus = document.getElementsByClassName('counter');
-let plus = document.getElementsByClassName('add');
-let minus = document.getElementsByClassName('sub');
-let count = document.getElementsByClassName('display');
-let itemCount = document.getElementById('cart_items');
-
-let obj = JSON.parse(localStorage.getItem('key') || '[]');
-itemCount.innerText = obj.length;
 
 for (let i = 0; i < addCartButton.length; i++) {
     addCartButton[i].addEventListener('click', () => {
