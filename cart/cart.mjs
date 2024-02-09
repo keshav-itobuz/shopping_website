@@ -1,51 +1,53 @@
-var obj = JSON.parse(localStorage.getItem('key') || '[]');
-var cartData = document.getElementById("data-container");
+let obj = JSON.parse(localStorage.getItem('key') || '[]');
+let cartData = document.getElementById("cart-container");
 
 function renderCard() {
     cartData.innerHTML = "";
-    obj.forEach((item) => {
 
-        let card = document.createElement('div');
-        card.setAttribute('class', 'card');
+    obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
+        : obj.forEach((item) => {
 
-        let image = document.createElement('img');
-        image.setAttribute("src", item.image);
-        image.setAttribute("alt", "product_image");
-        card.appendChild(image);
+            let card = document.createElement('div');
+            card.setAttribute('class', 'card');
 
-        let name = document.createElement('h3');
-        name.innerText = item.title;
-        card.appendChild(name);
+            let image = document.createElement('img');
+            image.setAttribute("src", item.image);
+            image.setAttribute("alt", "product_image");
+            card.appendChild(image);
 
-        let price = document.createElement('h4');
-        price.innerText = `$ ${item.price * item.qty}`;
-        price.setAttribute('class', 'price')
-        card.appendChild(price);
+            let name = document.createElement('h3');
+            name.innerText = item.title;
+            card.appendChild(name);
+
+            let price = document.createElement('h4');
+            price.innerText = `$ ${item.price * item.qty}`;
+            price.setAttribute('class', 'price')
+            card.appendChild(price);
 
 
-        let counter = document.createElement('div');
-        counter.setAttribute('class', 'counter');
+            let counter = document.createElement('div');
+            counter.setAttribute('class', 'counter');
 
-        let sub = document.createElement("button")
-        sub.setAttribute('class', "sub");
-        sub.innerText = "-";
-        counter.appendChild(sub);
+            let sub = document.createElement("button")
+            sub.setAttribute('class', "sub");
+            sub.innerText = "-";
+            counter.appendChild(sub);
 
-        let display = document.createElement('span');
-        display.setAttribute('class', 'display');
-        display.innerText = item.qty;
-        counter.appendChild(display);
+            let display = document.createElement('span');
+            display.setAttribute('class', 'display');
+            display.innerText = item.qty;
+            counter.appendChild(display);
 
-        let add = document.createElement("button")
-        add.setAttribute('class', "add");
-        add.innerText = "+";
-        counter.appendChild(add);
+            let add = document.createElement("button")
+            add.setAttribute('class', "add");
+            add.innerText = "+";
+            counter.appendChild(add);
 
-        card.appendChild(counter);
+            card.appendChild(counter);
 
-        cartData.appendChild(card);
+            cartData.appendChild(card);
 
-    });
+        });
     let counter = document.getElementsByClassName('counter');
     let plus = document.getElementsByClassName('add');
     let minus = document.getElementsByClassName('sub');
@@ -88,8 +90,8 @@ function renderCard() {
 
         })
     }
-    totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
-    totalItem ? totalItem.innerHTML = `Total Items : ${obj.length}` : "";
+    totalPrice.innerHTML = `Total cost : ${total}`;
+    totalItem.innerHTML = `Total Items : ${obj.length}`;
 };
 renderCard();
 

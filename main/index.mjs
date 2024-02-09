@@ -1,5 +1,6 @@
-import dbData from './storage.js';
+import dbData from '../storage.js';
 let container = document.getElementById('data-container');
+
 dbData.forEach((item) => {
     let card = document.createElement('div');
     card.setAttribute('class', 'card');
@@ -52,10 +53,10 @@ let addCart = document.getElementsByClassName('add_cart')
 let plus = document.getElementsByClassName('add');
 let minus = document.getElementsByClassName('sub');
 let count = document.getElementsByClassName('display');
-let cartItems = document.getElementById('cart_items');
+let itemCount = document.getElementById('cart_items');
 
 let obj = JSON.parse(localStorage.getItem('key') || '[]');
-cartItems.innerText = obj.length;
+itemCount.innerText = obj.length;
 
 for (let i = 0; i < addCartButton.length; i++) {
     addCartButton[i].addEventListener('click', () => {
@@ -79,8 +80,10 @@ for (let i = 0; i < addCartButton.length; i++) {
             count[i].innerText = obj[index].qty;
         }
         localStorage.setItem('key', JSON.stringify(obj));
-        cartItems.innerHTML = obj.length;
+        itemCount.innerHTML = obj.length;
     })
+
+    
     plus[i].addEventListener('click', () => {
         count[i].innerText = Number(count[i].innerText) + 1;
         let item = {
@@ -91,8 +94,10 @@ for (let i = 0; i < addCartButton.length; i++) {
         const index = obj.find(value => value.id === item.id);
         index === -1 ? obj.push(item) : index.qty = item.qty;
         localStorage.setItem('key', JSON.stringify(obj));
-        cartItems.innerHTML = obj.length;
+        itemCount.innerHTML = obj.length;
     })
+
+
     minus[i].addEventListener('click', () => {
         count[i].innerText = Number(count[i].innerText) === 0 ? 0 : Number(count[i].innerText) - 1;
         obj = JSON.parse(localStorage.getItem('key') || '[]');
@@ -107,7 +112,7 @@ for (let i = 0; i < addCartButton.length; i++) {
             index.qty--
         }
         localStorage.setItem('key', JSON.stringify(obj));
-        cartItems.innerHTML = obj.length;
+        itemCount.innerHTML = obj.length;
     })
 }
 

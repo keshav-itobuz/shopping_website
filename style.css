@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 .container {
@@ -33,7 +34,8 @@ a {
   color: white;
 }
 
-.nav-container, .info {
+.nav-container,
+.info {
   background-color: grey;
 }
 
@@ -66,6 +68,7 @@ a {
   border-radius: 50%;
 }
 
+#cart-container,
 #data-container {
   display: flex;
   flex-wrap: wrap;
@@ -87,7 +90,8 @@ a {
   display: none;
 }
 
-.add, .sub {
+.add,
+.sub {
   margin: 0 10px;
 }
 
@@ -107,11 +111,13 @@ a {
   color: black;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: white;
   margin: 10px 0;
 }
 
 .total {
   padding-left: 20px;
+  padding-top: 15px;
 }/*# sourceMappingURL=style.css.map */
