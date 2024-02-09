@@ -49,7 +49,6 @@ dbData.forEach((item) => {
 
 let addCartButton = document.getElementsByClassName('add_cart');
 let plusMinus = document.getElementsByClassName('counter');
-let addCart = document.getElementsByClassName('add_cart')
 let plus = document.getElementsByClassName('add');
 let minus = document.getElementsByClassName('sub');
 let count = document.getElementsByClassName('display');
@@ -83,7 +82,7 @@ for (let i = 0; i < addCartButton.length; i++) {
         itemCount.innerHTML = obj.length;
     })
 
-    
+
     plus[i].addEventListener('click', () => {
         count[i].innerText = Number(count[i].innerText) + 1;
         let item = {
@@ -105,11 +104,10 @@ for (let i = 0; i < addCartButton.length; i++) {
         if (index.qty < 2) {
             index.qty = 0;
             obj = obj.filter(ob => ob.id !== index.id)
-            addCart[i].style.display = "block";
-            plusMinus[i].style.display = "none"
-
+            addCartButton[i].style.display = "block";
+            plusMinus[i].style.display = "none";
         } else {
-            index.qty--
+            index.qty--;
         }
         localStorage.setItem('key', JSON.stringify(obj));
         itemCount.innerHTML = obj.length;
