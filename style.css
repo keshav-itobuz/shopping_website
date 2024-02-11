@@ -73,6 +73,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  min-height: 61vh;
   align-items: center;
   justify-content: center;
 }
@@ -100,11 +101,9 @@ a {
 }
 
 .total {
-  position: sticky;
+  position: static;
   bottom: 0;
   background-color: gray;
-  height: 20vh;
-  width: 100vw;
 }
 .total button {
   background-color: white;
@@ -121,9 +120,6 @@ h2 {
   padding-left: 20px;
   padding-top: 15px;
 }
-
-@media (min-width: 596px) {
-  .total {
-    position: absolute;
-  }
+.total button {
+  margin-bottom: 20px;
 }/*# sourceMappingURL=style.css.map */

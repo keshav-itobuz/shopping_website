@@ -16,6 +16,7 @@ button {
   }
   background-color: grey;
   color: white;
+
 }
 
 img {
@@ -70,6 +71,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  min-height: 61vh;
   align-items: center;
   justify-content: center;
 }
@@ -94,11 +96,9 @@ a {
 // ---- cart page style -----
 
 .total {
-  position: sticky;
+  position: static;
   bottom: 0;
   background-color: gray;
-  height: 20vh;
-  width: 100vw;
   button {
     background-color: white;
     color: black;
@@ -114,10 +114,8 @@ h2 {
 .total {
   padding-left: 20px;
   padding-top: 15px;
-}
-
-@media(min-width:596px){
-  .total{
-    position: absolute;
+  button{
+    margin-bottom: 20px;
   }
 }
+
