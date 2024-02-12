@@ -55,3 +55,32 @@ export function removeItem(e, countDisplay, addCartButton, counter, itemCount) {
         itemCount.innerHTML = obj.length;
     }
 }
+
+export function addcartItem(e, countDisplay, price) {
+    if (e.target.className === "addItem") {
+        let obj = JSON.parse(localStorage.getItem('key'));
+        let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.add_item);
+        countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) + 1;
+        obj[selectedIndex].qty = Number(countDisplay[selectedIndex].innerText);
+        localStorage.setItem('key', JSON.stringify(obj));
+        price[selectedIndex].innerText = `$ ${obj[selectedIndex].price * obj[selectedIndex].qty}`;
+    }
+}
+
+export function removeCartItem(e, countDisplay, price, card) {
+    if (e.target.className === "removeItem") {
+        let obj = JSON.parse(localStorage.getItem('key'));
+        let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.remove_item);
+        countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) - 1;
+        if (obj[selectedIndex].qty < 2) {
+            obj = obj.filter(ob => ob.id !== obj[selectedIndex].id);
+            localStorage.setItem('key', JSON.stringify(obj));
+            card[selectedIndex].remove();
+        } else {
+            obj[selectedIndex].qty--;
+            price[selectedIndex].innerText = `$ ${obj[selectedIndex].price * obj[selectedIndex].qty}`;
+            localStorage.setItem('key', JSON.stringify(obj));
+        }
+
+    }
+}
