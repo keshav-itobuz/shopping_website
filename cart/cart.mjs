@@ -11,6 +11,7 @@ let totalPrice = document.getElementById('totalCost');
 let totalItem = document.getElementById('totalItem');
 let addToCart = document.getElementsByClassName('add_cart');
 
+
 obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
     : elementCreator(obj, cartData);
 
@@ -32,6 +33,7 @@ cartData.addEventListener('click', (e) => {
     total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
     totalPrice ? totalPrice.innerHTML = `Total cost :$ ${total}` : "";
     if (obj.length === 0) cartData.innerText = "You have nothig to buy in your cart ; )";
+    totalItem.innerHTML = `Total Items : ${obj.length}`;
 })
 
 
