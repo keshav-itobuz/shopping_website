@@ -10,7 +10,7 @@ function renderCard() {
 
 
     let counter = document.getElementsByClassName('counter');
-    let count = document.getElementsByClassName('display');
+    let countDisplay = document.getElementsByClassName('display');
     let price = document.getElementsByClassName('price');
     let totalPrice = document.getElementById('totalCost');
     let totalItem = document.getElementById('totalItem');
@@ -19,12 +19,12 @@ function renderCard() {
 
 
     for (let i = 0; i < obj.length; i++) {
-        count[i].innerText = obj[i].qty;
+        countDisplay[i].innerText = obj[i].qty;
         counter[i].style.display = "block";
         addToCart[i].style.display = "none";
         price[i].innerText = `$ ${obj[i].price * obj[i].qty}`;
     };
-    totalPrice.innerHTML = `Total cost : ${total}`;
+    totalPrice.innerHTML = `Total cost : $ ${total}`;
     totalItem.innerHTML = `Total Items : ${obj.length}`;
 
     check && cartData.addEventListener('click', (e) => {
@@ -32,17 +32,17 @@ function renderCard() {
 
             obj = JSON.parse(localStorage.getItem('key'));
             let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.add_item);
-            count[selectedIndex].innerText = Number(count[selectedIndex].innerText) + 1;
-            obj[selectedIndex].qty = Number(count[selectedIndex].innerText);
+            countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) + 1;
+            obj[selectedIndex].qty = Number(countDisplay[selectedIndex].innerText);
             localStorage.setItem('key', JSON.stringify(obj));
             price[selectedIndex].innerText = `$ ${obj[selectedIndex].price * obj[selectedIndex].qty}`;
-            total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
-            totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
         }
+
+
         if (e.target.className === "removeItem") {
             obj = JSON.parse(localStorage.getItem('key'));
             let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.remove_item);
-            count[selectedIndex].innerText = Number(count[selectedIndex].innerText) - 1;
+            countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) - 1;
             if (obj[selectedIndex].qty < 2) {
                 obj = obj.filter(ob => ob.id !== obj[selectedIndex].id);
                 localStorage.setItem('key', JSON.stringify(obj));
@@ -53,13 +53,10 @@ function renderCard() {
                 price[selectedIndex].innerText = `$ ${obj[selectedIndex].price * obj[selectedIndex].qty}`;
                 localStorage.setItem('key', JSON.stringify(obj));
             }
-            total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
-            totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
-
 
         }
-        totalPrice.innerHTML = `Total cost : ${total}`;
-        totalItem.innerHTML = `Total Items : ${obj.length}`;
+        total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
+        totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
     })
 }
 

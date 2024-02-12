@@ -25,6 +25,12 @@ img {
   width: 150px;
 }
 
+h1,
+h2 {
+  color: white;
+  margin: 10px 0;
+}
+
 h3 {
   margin: 10px 0;
 }
@@ -78,7 +84,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  min-height: 61vh;
+  min-height: 64.8vh;
   align-items: center;
   justify-content: center;
 }
@@ -109,22 +115,11 @@ a {
   position: static;
   bottom: 0;
   background-color: gray;
-}
-.total button {
-  background-color: white;
-  color: black;
-}
-
-h1,
-h2 {
-  color: white;
-  margin: 10px 0;
-}
-
-.total {
   padding-left: 20px;
   padding-top: 15px;
 }
 .total button {
+  background-color: white;
+  color: black;
   margin-bottom: 20px;
 }/*# sourceMappingURL=style.css.map */

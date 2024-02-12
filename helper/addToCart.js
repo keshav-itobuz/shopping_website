@@ -24,4 +24,5 @@ export function addToCart(e ,counter,countDisplay,obj,itemCount) {
         localStorage.setItem('key', JSON.stringify(obj));
         itemCount.innerHTML = obj.length;
     }
+    
 }

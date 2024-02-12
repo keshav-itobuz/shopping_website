@@ -4,25 +4,34 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
 .container {
   width: 90%;
   margin: auto;
   margin-bottom: 30px;
 }
+
 button {
   padding: 8px;
+
   &:hover {
     cursor: pointer;
   }
+
   background-color: grey;
   color: white;
-
 }
 
 img {
   height: 150px;
   width: 150px;
 }
+h1,
+h2 {
+  color: white;
+  margin: 10px 0;
+}
+
 h3 {
   margin: 10px 0;
 }
@@ -33,14 +42,16 @@ a {
 }
 
 // navbar start
-.nav-container{
+.nav-container {
   position: sticky;
   top: 0;
 }
+
 .nav-container,
 .info {
   background-color: grey;
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -50,12 +61,15 @@ a {
     &:hover {
       cursor: pointer;
     }
+
     color: white;
   }
 }
+
 .cart {
   position: relative;
 }
+
 #cart_items {
   display: flex;
   justify-content: center;
@@ -68,6 +82,7 @@ a {
   right: -13px;
   border-radius: 50%;
 }
+
 // data-container section
 
 #cart-container,
@@ -75,10 +90,11 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  min-height: 61vh;
+  min-height: 64.8vh;
   align-items: center;
   justify-content: center;
 }
+
 .card {
   display: flex;
   flex-direction: column;
@@ -87,39 +103,32 @@ a {
   width: 300px;
   padding: 10px;
 }
+
 .counter {
   display: none;
 }
+
 .addItem,
 .removeItem {
   margin: 0 10px;
 }
+
 .price {
   margin: 5px 0 10px 0;
 }
+
 // ---- cart page style -----
 
-.total {
+.total{
   position: static;
   bottom: 0;
   background-color: gray;
+  padding-left: 20px;
+  padding-top: 15px;
+
   button {
     background-color: white;
     color: black;
-  }
-}
-
-h1,
-h2 {
-  color: white;
-  margin: 10px 0;
-}
-
-.total {
-  padding-left: 20px;
-  padding-top: 15px;
-  button{
     margin-bottom: 20px;
   }
 }
-
