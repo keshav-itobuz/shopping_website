@@ -1,4 +1,9 @@
-export function sendEmail(otp , userName , email) {
+const otpData = document.getElementById('otpData');
+const signupData = document.getElementById('signupData');
+const  loginData = document.getElementById('loginData');
+let userData;
+
+export function sendEmail(otp) {
     (function () {
         emailjs.init({
             publicKey: "grYNfmXN7Bd5hh-Aq",
@@ -19,5 +24,24 @@ export function sendEmail(otp , userName , email) {
             console.log('FAILED...', error);
         },
     );
+
+}
+
+
+export function Verification(event, otpInput, otp, userData) {
+    event.preventDefault();
+    if (Number(otpInput.value) === otp) {
+        let obj = JSON.parse(localStorage.getItem('userData') || '[]')
+        obj.push(userData)
+        localStorage.setItem('userData', JSON.stringify(obj));
+        alert("Succesfully signed up!!");
+        loginData.style.display="block";
+        otpData.style.display="none";
+        signupData.style.display="none";
+        
+    }
+    else {
+        alert("wrong OTP!! Try again");
+    }
 
 }

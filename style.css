@@ -79,6 +79,11 @@ a {
   border-radius: 50%;
 }
 
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
 #cart-container,
 #data-container {
   display: flex;
@@ -148,19 +153,19 @@ input {
   background-color: rgb(27, 193, 181);
   padding: 15px 30px;
   border-radius: 3px;
-  margin-top: 20px;
-}
-.form-container h1 {
-  margin-bottom: 2%;
-}
-.form-container a {
-  margin-top: 40px;
   display: block;
+  margin: 20px auto;
+}
+.form-container div {
+  margin-top: 50px;
 }
 
-#otpData {
+#otpData, #signupData {
   display: none;
 }
-#otpData h3 {
+#otpData h3, #signupData h3 {
   color: white;
+}
+#otpData input, #signupData input {
+  width: 50%;
 }/*# sourceMappingURL=style.css.map */

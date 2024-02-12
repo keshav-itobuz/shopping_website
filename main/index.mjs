@@ -1,10 +1,13 @@
 import dbData from '../storage.js';
 import { elementCreator } from '../helper/elementCreator.js';
 import { addToCart, addItem, removeItem } from '../helper/helper.js';
+
+
 let obj = JSON.parse(localStorage.getItem('key') || '[]');
 let container = document.getElementById('data-container');
 
 elementCreator(dbData, container);
+
 
 let addCartButton = document.getElementsByClassName('add_cart');
 let counter = document.getElementsByClassName('counter');

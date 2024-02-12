@@ -82,6 +82,10 @@ a {
   right: -13px;
   border-radius: 50%;
 }
+.nav-links{
+  display: flex;
+  gap: 20px;
+}
 
 // data-container section
 
@@ -157,19 +161,22 @@ input {
     background-color: rgb(27, 193, 181);
     padding: 15px 30px;
     border-radius: 3px;
-    margin-top: 20px;
-  }
-  h1 {
-    margin-bottom: 2%;
-  }
-  a {
-    margin-top: 40px;
     display: block;
+    margin: 20px auto;
+  }
+
+  div{
+    margin-top: 50px;
   }
 }
-#otpData {
+#otpData , #signupData{
   display: none;
   h3{
     color: white;
   }
+  input{
+    width: 50%;
+  }
 }
+
+

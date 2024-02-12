@@ -1,18 +1,25 @@
 import { sendEmail } from "./helper_function.js";
+import { Verification } from "./helper_function.js";
 
+const signup = document.getElementById('signup');
 const userName = document.getElementById('name');
 const phone = document.getElementById('phn');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const signup = document.getElementById('signup');
 const otpData = document.getElementById('otpData');
 const signupData = document.getElementById('signupData');
+const  loginData = document.getElementById('loginData');
 const otpVerification = document.getElementById('otpVerification');
-const otpInput = document.getElementById('otpInput');
+const signin = document.getElementById('login')
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+const  gotoLogin = document.getElementById('gotoLogin');
+const  gotoSignup = document.getElementById('gotoSignup');
 
 
-let otp=Math.floor(Math.random() * 1000000);
 
+let otp = Math.floor(Math.random() * 1000000);
+let userData;
 
 signup.addEventListener('click', (event) => {
     event.preventDefault();
@@ -20,35 +27,59 @@ signup.addEventListener('click', (event) => {
         alert("Error : Please fill all the info");
     }
     else {
-        signupData.style.display = "none";
-        otpData.style.display = "block";
-        sendEmail(otp , userName , email);
-    }
-})
-
-otpVerification.addEventListener('click',(event)=>{
-    event.preventDefault();
-    if(Number(otpInput.value) === otp){
-        let userData={
-            name : userName.value,
-            email : email.value,
-            password : password.value,
-            phone : phone.value
+        userData = {
+            name: userName.value,
+            email: email.value,
+            password: password.value,
+            phone: phone.value
         };
         let obj = JSON.parse(localStorage.getItem('userData') || '[]')
-        let user=obj.find((item)=>item.phone===userData.phone);
-        if(user===undefined){
-            obj.push(userData);
-            localStorage.setItem('userData',JSON.stringify(obj));
-            alert("Succesfully signed up!!");
-        }
-        else{
+        let user = obj.findIndex((item) => item.phone === userData.phone || item.email === userData.email);
+        if (user !== -1) {
             alert("user already exists");
+            window.location.href="./login.html";
         }
-        
-
-    }
-    else{
-        alert("wrong Output");
+        else {
+            signupData.style.display = "none";
+            loginData.style.display="none";
+            otpData.style.display = "block";
+            // sendEmail(otp , userName , email);
+            console.log(otp);
+        }
     }
 })
+
+otpVerification.addEventListener('click', (event) => {
+    Verification(event, otpInput, otp, userData)
+})
+
+signin.addEventListener('click', (event) => {
+    event.preventDefault();
+    userData={
+        email: loginEmail.value,
+        password: loginPassword.value,
+    }
+    let obj=JSON.parse(localStorage.getItem('userData') || '[]');
+    let user=obj.findIndex((item)=>item.email == userData.email && item.password == userData.password);
+    console.log( userData.email )
+    if(user===-1){
+        alert("Invalid Email or Password");
+    }
+    else{
+        window.location.href="../main/index.html";
+    }
+})
+
+gotoLogin.addEventListener( 'click' , (event)=>{
+    event.preventDefault();
+    loginData.style.display='block';
+    signupData.style.display='none';
+
+})
+gotoSignup.addEventListener( 'click' , (event)=>{
+    event.preventDefault();
+    signupData.style.display='block';
+    loginData.style.display='none';
+    
+})
+
