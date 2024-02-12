@@ -23,9 +23,7 @@ export function addToCart(e, counter, countDisplay, obj, itemCount) {
         localStorage.setItem('key', JSON.stringify(obj));
         itemCount.innerHTML = obj.length;
     }
-
 }
-
 export function addItem(e, countDisplay, obj) {
     if (e.target.className === "addItem") {
         let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.add_item);
