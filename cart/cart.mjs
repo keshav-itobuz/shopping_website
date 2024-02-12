@@ -56,7 +56,7 @@ function renderCard() {
 
         }
         total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
-        totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
+        totalPrice ? totalPrice.innerHTML = `Total cost :$ ${total}` : "";
     })
 }
 
