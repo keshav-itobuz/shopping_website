@@ -17,34 +17,34 @@ export function elementCreator(data , container){
         price.setAttribute('class', 'price')
         card.appendChild(price);
     
-        let btn = document.createElement("button")
-        btn.setAttribute('class', "add_cart");
-        btn.setAttribute('data-add_to_cart', item.id);
-        btn.innerText = "Add to cart"
+        let addToCart = document.createElement("button")
+        addToCart.setAttribute('class', "add_cart");
+        addToCart.setAttribute('data-add_to_cart', item.id);
+        addToCart.innerText = "Add to cart"
     
         let counter = document.createElement('div');
         counter.setAttribute('class', 'counter');
         counter.setAttribute('data-counter', item.id)
     
-        let sub = document.createElement("button")
-        sub.setAttribute('class', "sub");
-        sub.setAttribute('data-remove_item', item.id);
-        sub.innerText = "-";
-        counter.appendChild(sub);
+        let removeItem = document.createElement("button")
+        removeItem.setAttribute('class', "removeItem");
+        removeItem.setAttribute('data-remove_item', item.id);
+        removeItem.innerText = "-";
+        counter.appendChild(removeItem);
     
         let display = document.createElement('span');
         display.setAttribute('class', 'display');
         display.innerText = "1";
         counter.appendChild(display);
     
-        let add = document.createElement("button")
-        add.setAttribute('class', "add");
-        add.setAttribute('data-add_item', item.id);
-        add.innerText = "+";
-        counter.appendChild(add);
+        let addItem = document.createElement("button")
+        addItem.setAttribute('class', "addItem");
+        addItem.setAttribute('data-add_item', item.id);
+        addItem.innerText = "+";
+        counter.appendChild(addItem);
     
         card.appendChild(counter);
-        card.appendChild(btn);
+        card.appendChild(addToCart);
     
         container.appendChild(card);
     });

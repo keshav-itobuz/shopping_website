@@ -34,6 +34,11 @@ a {
   color: white;
 }
 
+.nav-container {
+  position: sticky;
+  top: 0;
+}
+
 .nav-container,
 .info {
   background-color: grey;
@@ -91,8 +96,8 @@ a {
   display: none;
 }
 
-.add,
-.sub {
+.addItem,
+.removeItem {
   margin: 0 10px;
 }
 

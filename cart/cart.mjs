@@ -28,7 +28,7 @@ function renderCard() {
     totalItem.innerHTML = `Total Items : ${obj.length}`;
 
     check && cartData.addEventListener('click', (e) => {
-        if (e.target.className === "add") {
+        if (e.target.className === "addItem") {
 
             obj = JSON.parse(localStorage.getItem('key'));
             let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.add_item);
@@ -39,7 +39,7 @@ function renderCard() {
             total = obj.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
             totalPrice ? totalPrice.innerHTML = `Total cost : ${total}` : "";
         }
-        if (e.target.className === "sub") {
+        if (e.target.className === "removeItem") {
             obj = JSON.parse(localStorage.getItem('key'));
             let selectedIndex = obj.findIndex((value) => value.id == e.target.dataset.remove_item);
             count[selectedIndex].innerText = Number(count[selectedIndex].innerText) - 1;

@@ -33,6 +33,10 @@ a {
 }
 
 // navbar start
+.nav-container{
+  position: sticky;
+  top: 0;
+}
 .nav-container,
 .info {
   background-color: grey;
@@ -86,8 +90,8 @@ a {
 .counter {
   display: none;
 }
-.add,
-.sub {
+.addItem,
+.removeItem {
   margin: 0 10px;
 }
 .price {
