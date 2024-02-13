@@ -168,4 +168,8 @@ input {
 }
 #otpData input, #signupData input {
   width: 50%;
+}
+
+form a {
+  margin-left: 10px;
 }/*# sourceMappingURL=style.css.map */

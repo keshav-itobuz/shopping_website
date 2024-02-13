@@ -16,7 +16,6 @@ const loginPassword = document.getElementById('loginPassword');
 const  gotoLogin = document.getElementById('gotoLogin');
 const  gotoSignup = document.getElementById('gotoSignup');
 
-
 let otp = Math.floor(Math.random() * 1000000);
 let userData;
 
@@ -42,7 +41,7 @@ signup.addEventListener('click', (event) => {
             signupData.style.display = "none";
             loginData.style.display="none";
             otpData.style.display = "block";
-            // sendEmail(otp , userName , email);
+            sendEmail(otp , userName , email);
             console.log(otp);
         }
     }
@@ -60,12 +59,25 @@ signin.addEventListener('click', (event) => {
     }
     let obj=JSON.parse(localStorage.getItem('userData') || '[]');
     let user=obj.findIndex((item)=>item.email == userData.email && item.password == userData.password);
-    console.log( userData.email )
     if(user===-1){
         alert("Invalid Email or Password");
     }
     else{
-        localStorage.setItem('currentUser',JSON.stringify({email:userData.email,cartItems:[]}));
+        let cartItems=JSON.parse(localStorage.getItem('userCartData'));
+        if(cartItems[userData.email]===undefined){
+            cartItems=[];
+        }
+        else{
+            cartItems=cartItems[userData.email];
+        }
+
+        let currentUser={
+            name:obj[user].name,
+            email:userData.email,
+            cartItems:cartItems,
+        };
+
+        localStorage.setItem('currentUser',JSON.stringify(currentUser));
         window.location.href="../main/index.html";
     }
 })
