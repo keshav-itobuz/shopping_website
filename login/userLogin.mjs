@@ -17,7 +17,6 @@ const  gotoLogin = document.getElementById('gotoLogin');
 const  gotoSignup = document.getElementById('gotoSignup');
 
 
-
 let otp = Math.floor(Math.random() * 1000000);
 let userData;
 
@@ -66,6 +65,7 @@ signin.addEventListener('click', (event) => {
         alert("Invalid Email or Password");
     }
     else{
+        localStorage.setItem('currentUser',JSON.stringify({email:userData.email,cartItems:[]}));
         window.location.href="../main/index.html";
     }
 })
