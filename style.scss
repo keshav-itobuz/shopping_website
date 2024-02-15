@@ -10,6 +10,9 @@
   margin: auto;
   margin-bottom: 30px;
 }
+input {
+  outline: none;
+}
 
 button {
   padding: 8px;
@@ -82,7 +85,7 @@ a {
   right: -13px;
   border-radius: 50%;
 }
-.nav-links{
+.nav-links {
   display: flex;
   gap: 20px;
 }
@@ -146,7 +149,7 @@ input {
   border-radius: 3px;
   outline: none;
 }
-.form-section{
+.form-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,46 +160,56 @@ input {
   margin: 0;
   background-color: gray;
   button {
-    background-color: gray;
+    background-color: white;
+    color: black;
     padding: 15px 30px;
     border-radius: 3px;
     display: block;
     margin: 20px auto;
   }
-  h1{
-
+  h1 {
     color: black;
     margin: 0 50px 50px 50px;
   }
-  input{
+  input {
     width: 60%;
   }
 }
-.form-container{
-  background-color: white;
+.form-container {
+  background-color: gray;
   border-radius: 10px;
-  div{
+  div {
     margin-top: 50px;
   }
 }
-#otpData , #signupData{
+#otpData,
+#signupData {
   display: none;
-  h3{
+  h3 {
     color: white;
   }
 }
-#loginData{
-  input{
+#loginData {
+  input {
     width: 60%;
     margin: 10px 50px;
   }
 }
 
-form{
-  a{
+form {
+  a {
     margin-left: 10px;
     color: blue;
   }
   margin-bottom: 50px;
 }
 
+@media (min-width: 768px) {
+  .form-container {
+    background-color: white;
+  }
+  button {
+    background-color: gray !important;
+    color: white !important;
+  }
+}

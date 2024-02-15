@@ -2,7 +2,6 @@ import { sendEmail } from "./helper_function.js";
 import { Verification } from "./helper_function.js";
 
 const signup = document.getElementById('signup');
-const userName = document.getElementById('name');
 const phone = document.getElementById('phn');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
@@ -15,7 +14,7 @@ const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
 const  gotoLogin = document.getElementById('gotoLogin');
 const  gotoSignup = document.getElementById('gotoSignup');
-
+const userName = document.getElementById('name');
 let otp = Math.floor(Math.random() * 1000000);
 let userData;
 
@@ -63,7 +62,7 @@ signin.addEventListener('click', (event) => {
         alert("Invalid Email or Password");
     }
     else{
-        let cartItems=JSON.parse(localStorage.getItem('userCartData'));
+        let cartItems=JSON.parse(localStorage.getItem('userCartData')||'[]');
         if(cartItems[userData.email]===undefined){
             cartItems=[];
         }

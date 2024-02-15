@@ -19,7 +19,7 @@ let logout = document.getElementById('logout');
 let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
 itemCount.innerText = obj.cartItems?.length;
-user.innerText=`Welcome ${currentUserData.name}`;
+user.innerText = `Welcome ${currentUserData.name}`;
 
 container.addEventListener('click', (e) => {
     let obj = JSON.parse(localStorage.getItem('currentUser') || -1);

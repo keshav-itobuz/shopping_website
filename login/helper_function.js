@@ -3,7 +3,7 @@ const signupData = document.getElementById('signupData');
 const  loginData = document.getElementById('loginData');
 let userData;
 
-export function sendEmail(otp) {
+export function sendEmail(otp , userName , email) {
     (function () {
         emailjs.init({
             publicKey: "grYNfmXN7Bd5hh-Aq",
