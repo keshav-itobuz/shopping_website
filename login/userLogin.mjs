@@ -41,7 +41,6 @@ signup.addEventListener('click', (event) => {
             loginData.style.display = "none";
             otpData.style.display = "block";
             sendEmail(otp, userName, email);
-            console.log(otp);
         }
     }
 })
