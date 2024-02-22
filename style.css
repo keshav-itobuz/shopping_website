@@ -103,15 +103,28 @@ a {
   display: flex;
   gap: 15px;
 }
-
 #categories span {
   padding-bottom: 5px;
   border-bottom: 3px solid white;
 }
-
 #categories span:hover {
   cursor: pointer;
   border-bottom: 3px solid grey !important;
+}
+
+.carousel {
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x-mandatory;
+  overflow-x: auto;
+}
+.carousel img {
+  width: 100%;
+  margin: auto;
+  aspect-ratio: 10/1;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 #cartContainer,
@@ -178,7 +191,6 @@ input {
   margin: 0;
   background-color: gray;
 }
-
 .form-section button {
   background-color: gray;
   padding: 15px 30px;
@@ -186,12 +198,10 @@ input {
   display: block;
   margin: 20px auto;
 }
-
 .form-section h1 {
   color: black;
   margin: 0 50px 50px 50px;
 }
-
 .form-section input {
   width: 60%;
 }
@@ -200,7 +210,6 @@ input {
   background-color: white;
   border-radius: 10px;
 }
-
 .form-container div {
   margin-top: 50px;
 }
@@ -209,7 +218,6 @@ input {
 #signupData {
   display: none;
 }
-
 #otpData h3,
 #signupData h3 {
   color: white;

@@ -119,8 +119,20 @@ a {
 }
 
 // carousel section
-
-
+.carousel {
+  img {
+    width: 100%;
+    margin: auto;
+    aspect-ratio: 10/1;
+  }
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x-mandatory;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 // data-container section
 
