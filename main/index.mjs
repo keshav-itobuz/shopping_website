@@ -2,20 +2,24 @@ import dbData from '../storage.js';
 import { elementCreator } from '../helper/elementCreator.js';
 import { addToCart, addItem, removeItem } from '../helper/helper.js';
 
+const user = document.getElementById('user');
+const addCartButton = document.getElementsByClassName('add_cart');
+const counter = document.getElementsByClassName('counter');
+const countDisplay = document.getElementsByClassName('display');
+const itemCount = document.getElementById('cart_items');
+const logout = document.getElementById('logout');
+const container = document.getElementById('data-container');
+const categories = document.getElementById('categories');
+const allProducts = document.getElementById('all');
+const searchItems = document.getElementById('searchItems');
+
 
 let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
 if (obj === -1)
     window.location.href = "../login/login.html";
-let container = document.getElementById('data-container');
 
-elementCreator(dbData, container);
+elementCreator(dbData, container, "all", true);
 
-const user = document.getElementById('user');
-let addCartButton = document.getElementsByClassName('add_cart');
-let counter = document.getElementsByClassName('counter');
-let countDisplay = document.getElementsByClassName('display');
-let itemCount = document.getElementById('cart_items');
-let logout = document.getElementById('logout');
 let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
 itemCount.innerText = obj.cartItems?.length;
@@ -37,4 +41,23 @@ logout.addEventListener('click', (e) => {
     localStorage.setItem('userCartData', JSON.stringify(userCartData));
     localStorage.removeItem('currentUser');
     window.location.href = "../login/login.html";
+})
+
+let previousCategory = all;
+allProducts.style.borderBottom = "3px solid grey"
+
+categories.addEventListener('click', (e) => {
+    if (e.target.tagName !== "SPAN") {
+        return;
+    }
+    container.innerHTML = "";
+    previousCategory.style.borderBottom = "white";
+    elementCreator(dbData, container, e.target.id, true);
+    e.target.style.borderBottom = "3px solid grey"
+    previousCategory = e.target;
+})
+
+searchItems.addEventListener('keyup', (e) => {
+    container.innerHTML = "";
+    elementCreator(dbData, container, e.target.value, true);
 })

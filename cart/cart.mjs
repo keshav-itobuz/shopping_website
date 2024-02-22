@@ -13,7 +13,7 @@ let addToCart = document.getElementsByClassName('add_cart');
 
 
 obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
-    : elementCreator(obj.cartItems, cartData);
+    : elementCreator(obj.cartItems, cartData, "all", false);
 
 let total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0);
 

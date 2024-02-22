@@ -11,10 +11,6 @@
   margin-bottom: 30px;
 }
 
-input {
-  outline: none;
-}
-
 button {
   padding: 8px;
   background-color: grey;
@@ -56,6 +52,7 @@ a {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px 0;
 }
@@ -64,6 +61,15 @@ a {
 }
 .nav div:hover {
   cursor: pointer;
+}
+
+#searchItems {
+  width: 100%;
+  height: 30px;
+  order: 1;
+  margin: 0;
+  margin-top: 10px;
+  border: 0;
 }
 
 .cart {
@@ -86,6 +92,24 @@ a {
 .nav-links {
   display: flex;
   gap: 20px;
+}
+
+.categories_container {
+  display: flex;
+  justify-content: center;
+}
+
+#categories {
+  display: flex;
+  gap: 15px;
+}
+#categories span {
+  padding-bottom: 5px;
+  border-bottom: 3px solid white;
+}
+#categories span:hover {
+  cursor: pointer;
+  border-bottom: 3px solid grey !important;
 }
 
 #cart-container,
@@ -153,8 +177,7 @@ input {
   background-color: gray;
 }
 .form-section button {
-  background-color: white;
-  color: black;
+  background-color: gray;
   padding: 15px 30px;
   border-radius: 3px;
   display: block;
@@ -169,7 +192,7 @@ input {
 }
 
 .form-container {
-  background-color: gray;
+  background-color: white;
   border-radius: 10px;
 }
 .form-container div {
@@ -198,12 +221,10 @@ form a {
   color: blue;
 }
 
-@media (min-width: 768px) {
-  .form-container {
-    background-color: white;
-  }
-  button {
-    background-color: gray !important;
-    color: white !important;
+@media (min-width: 530px) {
+  #searchItems {
+    order: 0;
+    width: 200px;
+    margin: 0;
   }
 }/*# sourceMappingURL=style.css.map */
