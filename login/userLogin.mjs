@@ -85,7 +85,7 @@ signin.addEventListener('click', (event) => {
         };
 
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        window.location.href = "../main/index.html";
+        window.location.href = "../index.html";
     }
 })
 
