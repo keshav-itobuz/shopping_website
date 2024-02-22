@@ -1,6 +1,6 @@
 const otpData = document.getElementById('otpData');
 const signupData = document.getElementById('signupData');
-const  loginData = document.getElementById('loginData');
+const loginData = document.getElementById('loginData');
 
 export function sendEmail(otp) {
     (function () {
@@ -34,10 +34,10 @@ export function Verification(event, otpInput, otp, userData) {
         obj.push(userData)
         localStorage.setItem('userData', JSON.stringify(obj));
         alert("Succesfully signed up!!");
-        loginData.style.display="block";
-        otpData.style.display="none";
-        signupData.style.display="none";
-        
+        loginData.style.display = "block";
+        otpData.style.display = "none";
+        signupData.style.display = "none";
+
     }
     else {
         alert("wrong OTP!! Try again");
