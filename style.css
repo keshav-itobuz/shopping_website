@@ -76,7 +76,7 @@ a {
   position: relative;
 }
 
-#cart_items {
+#cartItems {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,8 +112,8 @@ a {
   border-bottom: 3px solid grey !important;
 }
 
-#cart-container,
-#data-container {
+#cartContainer,
+#dataContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

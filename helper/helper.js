@@ -1,6 +1,6 @@
 import dbData from '../storage.js'
 export function addToCart(e, container, obj, itemCount) {
-    if (e.target.className === "add_cart") {
+    if (e.target.className === "addToCart") {
         if (obj === -1)
             window.location.href = "../login/login.html";
 
@@ -19,10 +19,12 @@ export function addToCart(e, container, obj, itemCount) {
             };
             obj = JSON.parse(localStorage.getItem('currentUser'));
             const index = obj.cartItems.findIndex(value => value.id === item.id);
+            
             if (index === -1) {
                 obj.cartItems.push(item);
                 countDisplay.innerText = 1;
             }
+
             else {
                 countDisplay.innerText = obj.cartItems[index].qty;
             }
@@ -33,6 +35,7 @@ export function addToCart(e, container, obj, itemCount) {
 }
 
 export function addItem(e, container, obj) {
+
     if (e.target.className === "addItem") {
         let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
         countDisplay.innerText = Number(countDisplay.innerText) + 1;
@@ -51,12 +54,15 @@ export function removeItem(e, container, itemCount) {
         countDisplay.innerText = Number(countDisplay.innerText) === 0 ? 0 : Number(countDisplay.innerText) - 1;
         let obj = JSON.parse(localStorage.getItem('currentUser'));
         const index = obj.cartItems.find(value => value.id === Number(e.target.dataset.remove_item));
+
         if (index.qty < 2) {
             index.qty = 0;
             obj.cartItems = obj.cartItems.filter(ob => ob.id !== index.id)
             addCartButton.style.display = "block";
             counter.style.display = "none";
-        } else {
+        } 
+        
+        else {
             index.qty--;
         }
         localStorage.setItem('currentUser', JSON.stringify(obj));
@@ -67,7 +73,7 @@ export function removeItem(e, container, itemCount) {
 export function addcartItem(e, countDisplay, price) {
     if (e.target.className === "addItem") {
         let obj = JSON.parse(localStorage.getItem('currentUser'));
-        let selectedIndex = obj.cartItems.findIndex((value) => value.id == e.target.dataset.add_item);
+        let selectedIndex = obj.cartItems.findIndex((value) => value.id === Number(e.target.dataset.add_item));
         countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) + 1;
         obj.cartItems[selectedIndex].qty = Number(countDisplay[selectedIndex].innerText);
         localStorage.setItem('currentUser', JSON.stringify(obj));
@@ -78,15 +84,15 @@ export function addcartItem(e, countDisplay, price) {
 export function removeCartItem(e, countDisplay, price, card) {
     if (e.target.className === "removeItem") {
         let obj = JSON.parse(localStorage.getItem('currentUser'));
-        let selectedIndex = obj.cartItems.findIndex((value) => value.id == e.target.dataset.remove_item);
+        let selectedIndex = obj.cartItems.findIndex((value) => value.id === Number(e.target.dataset.remove_item));
         countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) - 1;
 
         if (obj.cartItems[selectedIndex].qty < 2) {
             obj.cartItems = obj.cartItems.filter(ob => ob.id !== obj.cartItems[selectedIndex].id);
             localStorage.setItem('currentUser', JSON.stringify(obj));
             card[selectedIndex].remove();
-        } 
-        
+        }
+
         else {
             obj.cartItems[selectedIndex].qty--;
             price[selectedIndex].innerText = `$ ${obj.cartItems[selectedIndex].price * obj.cartItems[selectedIndex].qty}`;

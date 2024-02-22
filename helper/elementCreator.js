@@ -42,7 +42,7 @@ function filteredProducts(item, container) {
     card.appendChild(price);
 
     let addToCart = document.createElement("button")
-    addToCart.setAttribute('class', "add_cart");
+    addToCart.setAttribute('class', "addToCart");
     addToCart.setAttribute('data-add_to_cart', item.id);
     addToCart.innerText = "Add to cart"
 

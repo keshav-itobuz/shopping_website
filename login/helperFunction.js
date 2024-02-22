@@ -1,7 +1,6 @@
 const otpData = document.getElementById('otpData');
 const signupData = document.getElementById('signupData');
 const  loginData = document.getElementById('loginData');
-let userData;
 
 export function sendEmail(otp) {
     (function () {

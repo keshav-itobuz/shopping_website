@@ -1,15 +1,15 @@
 import { elementCreator } from "../helper/elementCreator.js";
 import { addcartItem, removeCartItem } from "../helper/helper.js";
 
+const cartData = document.getElementById("cartContainer");
+const counter = document.getElementsByClassName('counter');
+const card = document.getElementsByClassName('card');
+const countDisplay = document.getElementsByClassName('display');
+const price = document.getElementsByClassName('price');
+const totalPrice = document.getElementById('totalCost');
+const totalItem = document.getElementById('totalItem');
+const addToCart = document.getElementsByClassName('addToCart');
 let obj = JSON.parse(localStorage.getItem('currentUser'));
-let cartData = document.getElementById("cart-container");
-let counter = document.getElementsByClassName('counter');
-let card = document.getElementsByClassName('card');
-let countDisplay = document.getElementsByClassName('display');
-let price = document.getElementsByClassName('price');
-let totalPrice = document.getElementById('totalCost');
-let totalItem = document.getElementById('totalItem');
-let addToCart = document.getElementsByClassName('add_cart');
 
 
 obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
@@ -23,6 +23,7 @@ for (let i = 0; i < obj.cartItems.length; i++) {
     addToCart[i].style.display = "none";
     price[i].innerText = `$ ${obj.cartItems[i].price * obj.cartItems[i].qty}`;
 };
+
 totalPrice.innerHTML = `Total cost : $ ${total}`;
 totalItem.innerHTML = `Total Items : ${obj.cartItems.length}`;
 

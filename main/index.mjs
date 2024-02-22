@@ -3,12 +3,9 @@ import { elementCreator } from '../helper/elementCreator.js';
 import { addToCart, addItem, removeItem } from '../helper/helper.js';
 
 const user = document.getElementById('user');
-const addCartButton = document.getElementsByClassName('add_cart');
-const counter = document.getElementsByClassName('counter');
-const countDisplay = document.getElementsByClassName('display');
-const itemCount = document.getElementById('cart_items');
+const itemCount = document.getElementById('cartItems');
 const logout = document.getElementById('logout');
-const container = document.getElementById('data-container');
+const container = document.getElementById('dataContainer');
 const categories = document.getElementById('categories');
 const allProducts = document.getElementById('all');
 const searchItems = document.getElementById('searchItems');
