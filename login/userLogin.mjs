@@ -14,7 +14,6 @@ const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
 const gotoLogin = document.getElementById('gotoLogin');
 const gotoSignup = document.getElementById('gotoSignup');
-
 let otp = Math.floor(Math.random() * 1000000);
 let userData;
 
@@ -70,7 +69,7 @@ signin.addEventListener('click', (event) => {
     }
     else {
 
-        let cartItems = JSON.parse(localStorage.getItem('userCartData'));
+        let cartItems = JSON.parse(localStorage.getItem('userCartData')) || [];
         if (cartItems[userData.email] === undefined) {
             cartItems = [];
         }
@@ -103,4 +102,3 @@ gotoSignup.addEventListener('click', (event) => {
     loginData.style.display = 'none';
 
 })
-

@@ -2,7 +2,7 @@ const otpData = document.getElementById('otpData');
 const signupData = document.getElementById('signupData');
 const loginData = document.getElementById('loginData');
 
-export function sendEmail(otp) {
+export function sendEmail(otp, userName, email) {
     (function () {
         emailjs.init({
             publicKey: "grYNfmXN7Bd5hh-Aq",
