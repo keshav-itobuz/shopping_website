@@ -1,8 +1,4 @@
-let itemsOnScreen = [];
-export function elementCreator(data, container, category, bool) {
-    if (bool) {
-        itemsOnScreen = [];
-    }
+export function elementCreator(data, container, category) {
     if (category === "all") {
         data.forEach((item) => {
             filteredProducts(item, container)
@@ -25,13 +21,9 @@ export function elementCreator(data, container, category, bool) {
             }
         });
     }
-    localStorage.setItem('itemsOnScreen', JSON.stringify(itemsOnScreen));
 }
 
 function filteredProducts(item, container) {
-
-    itemsOnScreen.push(item.id);
-
     let card = document.createElement('div');
     card.setAttribute('class', 'card');
 
@@ -66,6 +58,7 @@ function filteredProducts(item, container) {
 
     let display = document.createElement('span');
     display.setAttribute('class', 'display');
+    display.setAttribute('data-display', item.id);
     display.innerText = "1";
     counter.appendChild(display);
 
@@ -79,5 +72,4 @@ function filteredProducts(item, container) {
     card.appendChild(addToCart);
 
     container.appendChild(card);
-
 }
