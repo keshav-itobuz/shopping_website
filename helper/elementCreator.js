@@ -15,7 +15,7 @@ export function elementCreator(data, container, category) {
 
     else {
         data.forEach((item) => {
-            let name = item.title.toLowerCase()
+            const name = item.title.toLowerCase()
             if (name.includes(category)) {
                 filteredProducts(item, container)
             }
@@ -24,45 +24,45 @@ export function elementCreator(data, container, category) {
 }
 
 function filteredProducts(item, container) {
-    let card = document.createElement('div');
+    const card = document.createElement('div');
     card.setAttribute('class', 'card');
 
-    let image = document.createElement('img');
+    const image = document.createElement('img');
     image.setAttribute("src", item.image);
     image.setAttribute("alt", "product_image");
     card.appendChild(image);
 
-    let name = document.createElement('h3');
+    const name = document.createElement('h3');
     name.innerText = item.title;
     card.appendChild(name);
 
-    let price = document.createElement('h4');
+    const price = document.createElement('h4');
     price.innerText = `$ ${item.price}`;
     price.setAttribute('class', 'price')
     card.appendChild(price);
 
-    let addToCart = document.createElement("button")
+    const addToCart = document.createElement("button")
     addToCart.setAttribute('class', "addToCart");
     addToCart.setAttribute('data-add_to_cart', item.id);
     addToCart.innerText = "Add to cart"
 
-    let counter = document.createElement('div');
+    const counter = document.createElement('div');
     counter.setAttribute('class', 'counter');
     counter.setAttribute('data-counter', item.id)
 
-    let removeItem = document.createElement("button")
+    const removeItem = document.createElement("button")
     removeItem.setAttribute('class', "removeItem");
     removeItem.setAttribute('data-remove_item', item.id);
     removeItem.innerText = "-";
     counter.appendChild(removeItem);
 
-    let display = document.createElement('span');
+    const display = document.createElement('span');
     display.setAttribute('class', 'display');
     display.setAttribute('data-display', item.id);
     display.innerText = "1";
     counter.appendChild(display);
 
-    let addItem = document.createElement("button")
+    const addItem = document.createElement("button")
     addItem.setAttribute('class', "addItem");
     addItem.setAttribute('data-add_item', item.id);
     addItem.innerText = "+";
