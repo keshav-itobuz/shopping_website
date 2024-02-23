@@ -12,7 +12,7 @@ const addToCart = document.getElementsByClassName('addToCart');
 let obj = JSON.parse(localStorage.getItem('currentUser'));
 
 
-obj.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
+obj.cartItems.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
     : elementCreator(obj.cartItems, cartData, "all");
 
 let total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0);
