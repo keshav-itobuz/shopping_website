@@ -9,10 +9,7 @@ const imageLink = [
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/352e6f0f8034fab5.jpg?q=20",
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d05c680ac784bef4.png?q=20"
 ]
-
 function createCarousel(address) {
-    const carouselContainer = document.createElement('div');
-    carouselContainer.setAttribute('class', 'carouselContainer');
 
     const carouselItem = document.createElement('div');
     carouselItem.setAttribute('class', 'carouselItem');
@@ -22,8 +19,7 @@ function createCarousel(address) {
     carouselImage.setAttribute('alt', 'carousel Image');
 
     carouselItem.appendChild(carouselImage);
-    carouselContainer.appendChild(carouselItem);
-    carousel.appendChild(carouselContainer);
+    carousel.appendChild(carouselItem);
 }
 
 let currentIndex = 0;

@@ -2,7 +2,6 @@ import { elementCreator } from "../helper/elementCreator.js";
 
 const cartData = document.getElementById("cartContainer");
 const counter = document.getElementsByClassName('counter');
-const card = document.getElementsByClassName('card');
 const countDisplay = document.getElementsByClassName('display');
 const price = document.getElementsByClassName('price');
 const totalPrice = document.getElementById('totalCost');
@@ -10,9 +9,8 @@ const totalItem = document.getElementById('totalItem');
 const addToCart = document.getElementsByClassName('addToCart');
 let obj = JSON.parse(localStorage.getItem('currentUser'));
 
-
 obj.cartItems.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
-    : elementCreator(obj.cartItems, cartData, "all", "cart" );
+    : elementCreator(obj.cartItems, cartData, "all", "cart");
 
 let total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0);
 

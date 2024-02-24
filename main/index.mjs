@@ -1,6 +1,5 @@
 import dbData from '../storage.js';
 import { elementCreator } from '../helper/elementCreator.js';
-import { addToCart, addItem, removeItem } from '../helper/helper.js';
 
 const user = document.getElementById('user');
 const itemCount = document.getElementById('cartItems');
@@ -15,7 +14,7 @@ let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
 if (obj === -1)
     window.location.href = "../login/login.html";
 
-elementCreator(dbData, container, "all" , "main" , itemCount);
+elementCreator(dbData, container, "all", "main", itemCount);
 
 let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -42,12 +41,12 @@ categories.addEventListener('click', (e) => {
     }
     container.innerHTML = "";
     previousCategory.style.borderBottom = "white";
-    elementCreator(dbData, container, e.target.id ,  "main"  , itemCount);
+    elementCreator(dbData, container, e.target.id, "main", itemCount);
     e.target.style.borderBottom = "3px solid grey"
     previousCategory = e.target;
 })
 
 searchItems.addEventListener('keyup', (e) => {
     container.innerHTML = "";
-    elementCreator(dbData, container, e.target.value ,  "main" , itemCount);
+    elementCreator(dbData, container, e.target.value, "main", itemCount);
 })

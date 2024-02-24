@@ -43,7 +43,7 @@ a {
 // navbar start
 .nav-container {
   position: sticky;
-  z-index: 3;
+  z-index: 5;
   top: 0;
 }
 
@@ -69,15 +69,12 @@ a {
 }
 
 #searchItems {
-  order: 1;
-  margin-top: 10px;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   input {
     height: 30px;
-    margin: 0;
-    width: 80%;
+    width: 100%;
     border: 0;
   }
 }
@@ -110,7 +107,7 @@ a {
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 70px;
+  top: 95px;
   padding: 10px 0;
   background-color: white;
   margin-bottom: 20px;
@@ -136,36 +133,28 @@ a {
   margin-bottom: 20px;
 }
 
-.carouselContainer {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-}
-
 .carouselItem {
   width: 100%;
-  height: 100%;
   margin: auto;
 }
 
 .carouselItem img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
 }
 #prevBtn,
 #nextBtn {
   background-color: transparent;
   color: gray;
   border: 0;
-  font-size: 50px;
+  font-size: 38px;
   position: absolute;
   z-index: 4;
-  top: 32%;
+  bottom: 50%;
+  transform: translateY(50%);
 }
+
 #nextBtn {
   right: 5%;
 }
@@ -184,7 +173,7 @@ a {
 
 .dotsContainer {
   position: absolute;
-  bottom: 1%;
+  bottom: 4%;
   left: 50%;
   transform: translate(-50%);
   z-index: 3;
@@ -322,8 +311,11 @@ form {
 
 @media (min-width: 530px) {
   #searchItems {
-    order: 0;
-    width: 200px;
-    margin: 0;
+    input {
+      width: 80%;
+    }
+  }
+  .categories_container {
+    top: 70px;
   }
 }
