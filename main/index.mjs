@@ -15,19 +15,12 @@ let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
 if (obj === -1)
     window.location.href = "../login/login.html";
 
-elementCreator(dbData, container, "all");
+elementCreator(dbData, container, "all" , "main" , itemCount);
 
 let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
 itemCount.innerText = obj.cartItems?.length;
 user.innerText = `Welcome ${currentUserData.name}`;
-
-container.addEventListener('click', (e) => {
-    let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
-    addToCart(e, container, obj, itemCount);
-    addItem(e, container, dbData);
-    removeItem(e, container, itemCount)
-})
 
 logout.addEventListener('click', (e) => {
     currentUserData = JSON.parse(localStorage.getItem('currentUser'));
@@ -49,12 +42,12 @@ categories.addEventListener('click', (e) => {
     }
     container.innerHTML = "";
     previousCategory.style.borderBottom = "white";
-    elementCreator(dbData, container, e.target.id);
+    elementCreator(dbData, container, e.target.id ,  "main"  , itemCount);
     e.target.style.borderBottom = "3px solid grey"
     previousCategory = e.target;
 })
 
 searchItems.addEventListener('keyup', (e) => {
     container.innerHTML = "";
-    elementCreator(dbData, container, e.target.value);
+    elementCreator(dbData, container, e.target.value ,  "main" , itemCount);
 })

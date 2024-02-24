@@ -1,14 +1,16 @@
-export function elementCreator(data, container, category) {
+import { addToCart, addItem, removeItem } from '../helper/helper.js';
+import dbData from '../storage.js';
+export function elementCreator(data, container, category, renderingPage ,itemCount) {
     if (category === "all") {
         data.forEach((item) => {
-            filteredProducts(item, container)
+            filteredProducts(item, container, itemCount, renderingPage)
         });
     }
 
     else if (category === "men" || category === "women" || category === "electronics") {
         data.forEach((item) => {
             if (item.category === category) {
-                filteredProducts(item, container)
+                filteredProducts(item, container, itemCount, renderingPage)
             }
         });
     }
@@ -17,15 +19,18 @@ export function elementCreator(data, container, category) {
         data.forEach((item) => {
             const name = item.title.toLowerCase()
             if (name.includes(category)) {
-                filteredProducts(item, container)
+                filteredProducts(item, container, itemCount, renderingPage)
             }
         });
     }
 }
 
-function filteredProducts(item, container) {
+function filteredProducts(item, container, itemCount, renderingPage) {
+    const obj = JSON.parse(localStorage.getItem('currentUser') || -1);
+
     const card = document.createElement('div');
     card.setAttribute('class', 'card');
+    card.setAttribute('data-card', item.id);
 
     const image = document.createElement('img');
     image.setAttribute("src", item.image);
@@ -39,22 +44,25 @@ function filteredProducts(item, container) {
     const price = document.createElement('h4');
     price.innerText = `$ ${item.price}`;
     price.setAttribute('class', 'price')
+    price.setAttribute('data-price', item.id);
     card.appendChild(price);
 
-    const addToCart = document.createElement("button")
-    addToCart.setAttribute('class', "addToCart");
-    addToCart.setAttribute('data-add_to_cart', item.id);
-    addToCart.innerText = "Add to cart"
+    const addToCartButton = document.createElement("button")
+    addToCartButton.setAttribute('class', "addToCart");
+    addToCartButton.setAttribute('data-add_to_cart', item.id);
+    addToCartButton.addEventListener('click', (e) => addToCart(e, container, obj, itemCount));
+    addToCartButton.innerText = "Add to cart"
 
     const counter = document.createElement('div');
     counter.setAttribute('class', 'counter');
     counter.setAttribute('data-counter', item.id)
 
-    const removeItem = document.createElement("button")
-    removeItem.setAttribute('class', "removeItem");
-    removeItem.setAttribute('data-remove_item', item.id);
-    removeItem.innerText = "-";
-    counter.appendChild(removeItem);
+    const removeItemButton = document.createElement("button")
+    removeItemButton.setAttribute('class', "removeItem");
+    removeItemButton.setAttribute('data-remove_item', item.id);
+    removeItemButton.addEventListener('click', (e) => removeItem(e, container, itemCount, renderingPage));
+    removeItemButton.innerText = "-";
+    counter.appendChild(removeItemButton);
 
     const display = document.createElement('span');
     display.setAttribute('class', 'display');
@@ -62,14 +70,15 @@ function filteredProducts(item, container) {
     display.innerText = "1";
     counter.appendChild(display);
 
-    const addItem = document.createElement("button")
-    addItem.setAttribute('class', "addItem");
-    addItem.setAttribute('data-add_item', item.id);
-    addItem.innerText = "+";
-    counter.appendChild(addItem);
+    const addItemButton = document.createElement("button")
+    addItemButton.setAttribute('class', "addItem");
+    addItemButton.setAttribute('data-add_item', item.id);
+    addItemButton.addEventListener('click', (e) => addItem(e, container, renderingPage))
+    addItemButton.innerText = "+";
+    counter.appendChild(addItemButton);
 
     card.appendChild(counter);
-    card.appendChild(addToCart);
+    card.appendChild(addToCartButton);
 
     container.appendChild(card);
 }

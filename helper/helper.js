@@ -19,7 +19,7 @@ export function addToCart(e, container, obj, itemCount) {
             };
             obj = JSON.parse(localStorage.getItem('currentUser'));
             const index = obj.cartItems.findIndex(value => value.id === item.id);
-            
+
             if (index === -1) {
                 obj.cartItems.push(item);
                 countDisplay.innerText = 1;
@@ -34,70 +34,60 @@ export function addToCart(e, container, obj, itemCount) {
     }
 }
 
-export function addItem(e, container, obj) {
+export function addItem(e, container, renderingPage) {
 
     if (e.target.className === "addItem") {
         let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
         countDisplay.innerText = Number(countDisplay.innerText) + 1;
-        obj = JSON.parse(localStorage.getItem('currentUser'));
-        let localStorageIndex = obj.cartItems.findIndex((value) => value.id === Number(e.target.dataset.add_item));
-        obj.cartItems[localStorageIndex].qty = Number(countDisplay.innerText);
-        localStorage.setItem('currentUser', JSON.stringify(obj));
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let currentUserCart = currentUser.cartItems;
+        let localStorageIndex = currentUserCart.findIndex((value) => value.id === Number(e.target.dataset.add_item));
+        currentUserCart[localStorageIndex].qty = Number(countDisplay.innerText);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        if (renderingPage === "cart") {
+            const price = container.getElementsByClassName('price')
+            price[localStorageIndex].innerText = `$ ${currentUserCart[localStorageIndex].price * currentUserCart[localStorageIndex].qty}`;
+        }
     }
 }
 
-export function removeItem(e, container, itemCount) {
-    if (e.target.className === 'removeItem') {
-        let addCartButton = container.querySelector(`[data-add_to_cart="${e.target.dataset.remove_item}"]`)
-        let counter = container.querySelector(`[data-counter="${e.target.dataset.remove_item}"]`)
-        let countDisplay = container.querySelector(`[data-display="${e.target.dataset.remove_item}"]`)
-        countDisplay.innerText = Number(countDisplay.innerText) === 0 ? 0 : Number(countDisplay.innerText) - 1;
-        let obj = JSON.parse(localStorage.getItem('currentUser'));
-        const index = obj.cartItems.find(value => value.id === Number(e.target.dataset.remove_item));
 
-        if (index.qty < 2) {
-            index.qty = 0;
-            obj.cartItems = obj.cartItems.filter(ob => ob.id !== index.id)
+export function removeItem(e, container, itemCount, renderingPage) {
+
+    let addCartButton = container.querySelector(`[data-add_to_cart="${e.target.dataset.remove_item}"]`)
+    let counter = container.querySelector(`[data-counter="${e.target.dataset.remove_item}"]`)
+    let countDisplay = container.querySelector(`[data-display="${e.target.dataset.remove_item}"]`)
+    countDisplay.innerText = Number(countDisplay.innerText) === 0 ? 0 : Number(countDisplay.innerText) - 1;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUserCart = currentUser.cartItems;
+    const index = currentUserCart.find(value => value.id === Number(e.target.dataset.remove_item));
+
+    if (index.qty < 2) {
+        index.qty = 0;
+        currentUserCart = currentUserCart.filter(ob => ob.id !== index.id)
+    }
+    else {
+        index.qty--;
+    }
+
+    if (renderingPage === "cart") {
+        const price = container.querySelector(`[data-price="${e.target.dataset.remove_item}"]`)
+        const card = container.querySelector(`[data-card="${e.target.dataset.remove_item}"]`)
+        if (index.qty < 1) {
+            card.remove();
+        }
+        else {
+            price.innerText = `$ ${index.price * index.qty}`;
+        }
+    }
+
+    else {
+        if (index.qty < 1) {
             addCartButton.style.display = "block";
             counter.style.display = "none";
-        } 
-        
-        else {
-            index.qty--;
+            itemCount.innerHTML = currentUserCart.length;
         }
-        localStorage.setItem('currentUser', JSON.stringify(obj));
-        itemCount.innerHTML = obj.cartItems.length;
     }
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
 }
 
-export function addcartItem(e, countDisplay, price) {
-    if (e.target.className === "addItem") {
-        let obj = JSON.parse(localStorage.getItem('currentUser'));
-        let selectedIndex = obj.cartItems.findIndex((value) => value.id === Number(e.target.dataset.add_item));
-        countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) + 1;
-        obj.cartItems[selectedIndex].qty = Number(countDisplay[selectedIndex].innerText);
-        localStorage.setItem('currentUser', JSON.stringify(obj));
-        price[selectedIndex].innerText = `$ ${obj.cartItems[selectedIndex].price * obj.cartItems[selectedIndex].qty}`;
-    }
-}
-
-export function removeCartItem(e, countDisplay, price, card) {
-    if (e.target.className === "removeItem") {
-        let obj = JSON.parse(localStorage.getItem('currentUser'));
-        let selectedIndex = obj.cartItems.findIndex((value) => value.id === Number(e.target.dataset.remove_item));
-        countDisplay[selectedIndex].innerText = Number(countDisplay[selectedIndex].innerText) - 1;
-
-        if (obj.cartItems[selectedIndex].qty < 2) {
-            obj.cartItems = obj.cartItems.filter(ob => ob.id !== obj.cartItems[selectedIndex].id);
-            localStorage.setItem('currentUser', JSON.stringify(obj));
-            card[selectedIndex].remove();
-        }
-
-        else {
-            obj.cartItems[selectedIndex].qty--;
-            price[selectedIndex].innerText = `$ ${obj.cartItems[selectedIndex].price * obj.cartItems[selectedIndex].qty}`;
-            localStorage.setItem('currentUser', JSON.stringify(obj));
-        }
-
-    }
-}

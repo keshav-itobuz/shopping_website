@@ -1,5 +1,4 @@
 import { elementCreator } from "../helper/elementCreator.js";
-import { addcartItem, removeCartItem } from "../helper/helper.js";
 
 const cartData = document.getElementById("cartContainer");
 const counter = document.getElementsByClassName('counter');
@@ -13,7 +12,7 @@ let obj = JSON.parse(localStorage.getItem('currentUser'));
 
 
 obj.cartItems.length === 0 ? cartData.innerText = "You have nothig to buy in your cart ; )"
-    : elementCreator(obj.cartItems, cartData, "all");
+    : elementCreator(obj.cartItems, cartData, "all", "cart" );
 
 let total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0);
 
@@ -28,8 +27,6 @@ totalPrice.innerHTML = `Total cost : $ ${total}`;
 totalItem.innerHTML = `Total Items : ${obj.cartItems.length}`;
 
 cartData.addEventListener('click', (e) => {
-    addcartItem(e, countDisplay, price)
-    removeCartItem(e, countDisplay, price, card)
     obj = JSON.parse(localStorage.getItem('currentUser'));
     total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
     totalPrice ? totalPrice.innerHTML = `Total cost :$ ${total}` : "";
