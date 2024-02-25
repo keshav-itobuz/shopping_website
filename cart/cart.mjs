@@ -24,13 +24,6 @@ for (let i = 0; i < obj.cartItems.length; i++) {
 totalPrice.innerHTML = `Total cost : $ ${total}`;
 totalItem.innerHTML = `Total Items : ${obj.cartItems.length}`;
 
-cartData.addEventListener('click', (e) => {
-    obj = JSON.parse(localStorage.getItem('currentUser'));
-    total = obj.cartItems.reduce((accumlator, value) => accumlator += (value.qty * value.price), 0)
-    totalPrice ? totalPrice.innerHTML = `Total cost :$ ${total}` : "";
-    if (obj.cartItems.length === 0) cartData.innerText = "You have nothig to buy in your cart ; )";
-    totalItem.innerHTML = `Total Items : ${obj.cartItems.length}`;
-})
 
 
 

@@ -1,54 +1,53 @@
 import dbData from '../storage.js'
+
 export function addToCart(e, container, obj, itemCount) {
-    if (e.target.className === "addToCart") {
-        if (obj === -1)
-            window.location.href = "../login/login.html";
+
+    if (obj === -1)
+        window.location.href = "../login/login.html";
+
+    else {
+        let counter = container.querySelector(`[data-counter="${e.target.dataset.add_to_cart}"]`)
+        let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_to_cart}"]`)
+        e.target.style.display = "none";
+        counter.style.display = "block";
+        let product = dbData.find((value) => value.id === Number(e.target.dataset.add_to_cart));
+        let item = {
+            id: product.id,
+            qty: countDisplay.innerText,
+            title: product.title,
+            image: product.image,
+            price: product.price,
+        };
+        obj = JSON.parse(localStorage.getItem('currentUser'));
+        const index = obj.cartItems.findIndex(value => value.id === item.id);
+
+        if (index === -1) {
+            obj.cartItems.push(item);
+            countDisplay.innerText = 1;
+        }
 
         else {
-            let counter = container.querySelector(`[data-counter="${e.target.dataset.add_to_cart}"]`)
-            let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_to_cart}"]`)
-            e.target.style.display = "none";
-            counter.style.display = "block";
-            let product = dbData.find((value) => value.id === Number(e.target.dataset.add_to_cart));
-            let item = {
-                id: product.id,
-                qty: countDisplay.innerText,
-                title: product.title,
-                image: product.image,
-                price: product.price,
-            };
-            obj = JSON.parse(localStorage.getItem('currentUser'));
-            const index = obj.cartItems.findIndex(value => value.id === item.id);
-
-            if (index === -1) {
-                obj.cartItems.push(item);
-                countDisplay.innerText = 1;
-            }
-
-            else {
-                countDisplay.innerText = obj.cartItems[index].qty;
-            }
-            localStorage.setItem('currentUser', JSON.stringify(obj));
-            itemCount.innerHTML = obj.cartItems.length;
+            countDisplay.innerText = obj.cartItems[index].qty;
         }
+        localStorage.setItem('currentUser', JSON.stringify(obj));
+        itemCount.innerHTML = obj.cartItems.length;
     }
 }
 
 export function addItem(e, container, renderingPage) {
 
-    if (e.target.className === "addItem") {
-        let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
-        countDisplay.innerText = Number(countDisplay.innerText) + 1;
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let currentUserCart = currentUser.cartItems;
-        let localStorageIndex = currentUserCart.findIndex((value) => value.id === Number(e.target.dataset.add_item));
-        currentUserCart[localStorageIndex].qty = Number(countDisplay.innerText);
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        if (renderingPage === "cart") {
-            const price = container.getElementsByClassName('price')
-            price[localStorageIndex].innerText = `$ ${currentUserCart[localStorageIndex].price * currentUserCart[localStorageIndex].qty}`;
-        }
+    let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
+    countDisplay.innerText = Number(countDisplay.innerText) + 1;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUserCart = currentUser.cartItems;
+    let localStorageIndex = currentUserCart.findIndex((value) => value.id === Number(e.target.dataset.add_item));
+    currentUserCart[localStorageIndex].qty = Number(countDisplay.innerText);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    if (renderingPage === "cart") {
+        const price = container.getElementsByClassName('price')
+        price[localStorageIndex].innerText = `$ ${currentUserCart[localStorageIndex].price * currentUserCart[localStorageIndex].qty}`;
     }
+    location.reload('../cart/cart.mjs');
 }
 
 
@@ -89,5 +88,6 @@ export function removeItem(e, container, itemCount, renderingPage) {
         }
     }
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    location.reload('../cart/cart.mjs');
 }
 

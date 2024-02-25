@@ -1,6 +1,5 @@
 import { addToCart, addItem, removeItem } from '../helper/helper.js';
-import dbData from '../storage.js';
-export function elementCreator(data, container, category, renderingPage ,itemCount) {
+export function elementCreator(data, container, category, renderingPage, itemCount) {
     if (category === "all") {
         data.forEach((item) => {
             filteredProducts(item, container, itemCount, renderingPage)
