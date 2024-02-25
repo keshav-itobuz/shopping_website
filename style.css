@@ -68,6 +68,7 @@ a {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  order: 1;
 }
 #searchItems input {
   height: 30px;
@@ -295,8 +296,11 @@ form a {
 }
 
 @media (min-width: 530px) {
+  #searchItems {
+    order: 0;
+  }
   #searchItems input {
-    width: 80%;
+    width: 85%;
   }
   .categories_container {
     top: 70px;

@@ -46,6 +46,6 @@ function previousSlide() {
 
 createCarousel(imageLink[currentIndex]);
 previousDot.style.backgroundColor = '#012a4a'
-setInterval(nextSlide, 3000);
+setInterval(nextSlide, 4000);
 document.getElementById('nextBtn').addEventListener('click', nextSlide);
 document.getElementById('prevBtn').addEventListener('click', previousSlide);

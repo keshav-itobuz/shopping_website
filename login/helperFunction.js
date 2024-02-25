@@ -5,7 +5,7 @@ const loginData = document.getElementById('loginData');
 export function sendEmail(otp, userName, email) {
     (function () {
         emailjs.init({
-            publicKey: "grYNfmXN7Bd5hh-Aq",
+            publicKey: "gXI8mBrTUZJw4g_KH",
         });
     })();
 

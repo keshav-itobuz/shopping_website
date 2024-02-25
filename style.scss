@@ -72,10 +72,12 @@ a {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  order: 1;
   input {
     height: 30px;
     width: 100%;
     border: 0;
+
   }
 }
 
@@ -311,8 +313,9 @@ form {
 
 @media (min-width: 530px) {
   #searchItems {
+    order: 0;
     input {
-      width: 80%;
+      width: 85%;
     }
   }
   .categories_container {

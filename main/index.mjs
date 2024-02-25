@@ -20,7 +20,7 @@ elementCreator(dbData, container, "all", "main", itemCount);
 let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
 itemCount.innerText = obj.cartItems?.length;
-user.innerText = `Welcome ${currentUserData.name}`;
+user.innerText = `Welcome ${currentUserData.name.split(' ')[0]}`;
 
 logout.addEventListener('click', (e) => {
     currentUserData = JSON.parse(localStorage.getItem('currentUser'));
