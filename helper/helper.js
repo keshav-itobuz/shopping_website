@@ -46,8 +46,8 @@ export function addItem(e, container, renderingPage) {
     if (renderingPage === "cart") {
         const price = container.getElementsByClassName('price')
         price[localStorageIndex].innerText = `$ ${currentUserCart[localStorageIndex].price * currentUserCart[localStorageIndex].qty}`;
+        location.reload();
     }
-    location.reload('../cart/cart.mjs');
 }
 
 
@@ -73,6 +73,7 @@ export function removeItem(e, container, itemCount, renderingPage) {
             price.innerText = `$ ${index.price * index.qty}`;
             index.qty--;;
         }
+        location.reload('../cart/cart.mjs');
     }
 
     else {
@@ -88,6 +89,5 @@ export function removeItem(e, container, itemCount, renderingPage) {
         }
     }
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    location.reload('../cart/cart.mjs');
 }
 
