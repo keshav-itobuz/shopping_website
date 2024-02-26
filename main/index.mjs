@@ -10,16 +10,16 @@ const allProducts = document.getElementById('all');
 const searchItems = document.getElementById('searchItems');
 
 
-let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
-if (obj === -1)
+let currentUserData = JSON.parse(localStorage.getItem('currentUser') || -1);
+if (currentUserData === -1)
     window.location.href = "../login/login.html";
 
 elementCreator(dbData, container, "all", "main", itemCount);
 
-let currentUserData = JSON.parse(localStorage.getItem('currentUser'));
+currentUserData = JSON.parse(localStorage.getItem('currentUser'));
 
-itemCount.innerText = obj.cartItems?.length;
-user.innerText = `Welcome ${currentUserData.name.split(' ')[0]}`;
+itemCount.innerText = currentUserData.cartItems?.length;
+user.innerText = `Hii ${currentUserData.name.split(' ')[0]}`;
 
 logout.addEventListener('click', (e) => {
     currentUserData = JSON.parse(localStorage.getItem('currentUser'));

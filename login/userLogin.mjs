@@ -14,7 +14,7 @@ const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
 const gotoLogin = document.getElementById('gotoLogin');
 const gotoSignup = document.getElementById('gotoSignup');
-let otp = Math.floor(Math.random() * 1000000);
+const otp = Math.floor(Math.random() * 1000000);
 let userData;
 
 signup.addEventListener('click', (event) => {
@@ -32,14 +32,13 @@ signup.addEventListener('click', (event) => {
             phone: phone.value
         };
 
-        let obj = JSON.parse(localStorage.getItem('userData') || '[]')
-        let user = obj.findIndex((item) => item.phone === userData.phone || item.email === userData.email);
+        let UserData = JSON.parse(localStorage.getItem('userData') || '[]')
+        const user = UserData.findIndex((item) => item.phone === userData.phone || item.email === userData.email);
 
         if (user !== -1) {
             alert("user already exists");
             window.location.href = "./login.html";
         }
-
         else {
             signupData.style.display = "none";
             loginData.style.display = "none";
@@ -62,8 +61,8 @@ signin.addEventListener('click', (event) => {
         password: loginPassword.value,
     }
 
-    let obj = JSON.parse(localStorage.getItem('userData') || '[]');
-    let user = obj.findIndex((item) => item.email === userData.email && item.password === userData.password);
+    let UserData = JSON.parse(localStorage.getItem('userData') || '[]');
+    let user = UserData.findIndex((item) => item.email === userData.email && item.password === userData.password);
     if (user === -1) {
         alert("Invalid Email or Password");
     }
@@ -73,13 +72,12 @@ signin.addEventListener('click', (event) => {
         if (cartItems[userData.email] === undefined) {
             cartItems = [];
         }
-
         else {
             cartItems = cartItems[userData.email];
         }
 
         let currentUser = {
-            name: obj[user].name,
+            name: UserData[user].name,
             email: userData.email,
             cartItems: cartItems,
         };

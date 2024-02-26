@@ -5,7 +5,6 @@ export function elementCreator(data, container, category, renderingPage, itemCou
             filteredProducts(item, container, itemCount, renderingPage)
         });
     }
-
     else if (category === "men" || category === "women" || category === "electronics") {
         data.forEach((item) => {
             if (item.category === category) {
@@ -13,7 +12,6 @@ export function elementCreator(data, container, category, renderingPage, itemCou
             }
         });
     }
-
     else {
         data.forEach((item) => {
             const name = item.title.toLowerCase()

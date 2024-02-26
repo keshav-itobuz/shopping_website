@@ -25,6 +25,7 @@ img {
   height: 150px;
   width: 150px;
 }
+
 h1,
 h2 {
   color: white;
@@ -38,6 +39,14 @@ h3 {
 a {
   text-decoration: none;
   color: white;
+}
+
+form {
+  a {
+    margin-left: 10px;
+    color: blue;
+  }
+  margin-bottom: 50px;
 }
 
 // navbar start
@@ -75,10 +84,9 @@ a {
   margin-top: 10px;
   order: 1;
   input {
-    height: 30px;
+    padding: 10px;
     width: 100%;
     border: 0;
-
   }
 }
 
@@ -110,7 +118,7 @@ a {
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 105px;
+  top: 115px;
   padding: 10px 0;
   background-color: white;
   margin-bottom: 20px;
@@ -126,6 +134,7 @@ a {
       cursor: pointer;
       border-bottom: 3px solid grey !important;
     }
+    font-size: 13px;
   }
 }
 
@@ -134,31 +143,18 @@ a {
 .carousel {
   position: relative;
   margin-bottom: 20px;
-  // overflow: hidden;
 }
 
-.carouselOfImage{
+.carouselOfImage {
   width: 100%;
   height: 100%;
   display: flex;
   overflow: hidden;
 }
 
-// .carouselItem {
-//   width: 100%;
-//   height: 100%;
-//   flex: 1;
-//   // top: 0;
-//   // margin: auto;
-//   transition: 0.3s ease-in-out;
-//   // position: absolute;
-// }
-
 .carouselImage {
   width: 100%;
-  height: 100%;
-  flex: 1;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 #previousButton,
@@ -191,7 +187,7 @@ a {
 
 .dotsContainer {
   position: absolute;
-  bottom: 4%;
+  bottom: 2%;
   left: 50%;
   transform: translate(-50%);
   z-index: 3;
@@ -241,6 +237,27 @@ a {
   margin: 5px 0 10px 0;
 }
 
+// footer section
+.footer {
+  background-color: gray;
+  display: flex;
+  margin-top: 20px;
+  height: 30px;
+  align-items: center;
+}
+
+.footerItems {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: white;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 15px;
+}
+
 // ---- cart page style -----
 
 .total {
@@ -260,9 +277,8 @@ a {
 //-----------login-------
 
 input {
-  height: 50px;
+  padding:20px 10px ;
   margin: 10px;
-  padding-left: 10px;
   border-radius: 3px;
   outline: none;
 }
@@ -276,10 +292,11 @@ input {
   height: 100vh;
   width: 100vw;
   margin: 0;
-  background-color: gray;
+  background-color: white;
 
   button {
-    background-color: gray;
+    background-color: white;
+    color: black;
     padding: 15px 30px;
     border-radius: 3px;
     display: block;
@@ -297,8 +314,12 @@ input {
 }
 
 .form-container {
-  background-color: white;
   border-radius: 10px;
+  background-color: white;
+  button {
+    background-color: gray;
+    color: white;
+  }
   div {
     margin-top: 50px;
   }
@@ -319,15 +340,8 @@ input {
   }
 }
 
-form {
-  a {
-    margin-left: 10px;
-    color: blue;
-  }
-  margin-bottom: 50px;
-}
-
 @media (min-width: 530px) {
+  // navbar section
   #searchItems {
     order: 0;
     margin-top: 0;
@@ -335,7 +349,26 @@ form {
       width: 85%;
     }
   }
+
+  // carousel section
+  .carouselImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // categories section
   .categories_container {
     top: 90px;
+  }
+  #categories {
+    span {
+      font-size: 18px;
+    }
+  }
+
+  // login page
+  .form-section {
+    background-color: gray;
   }
 }

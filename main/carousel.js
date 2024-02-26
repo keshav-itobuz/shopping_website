@@ -58,7 +58,7 @@ previousButton.addEventListener("click", () => {
     carouselImage.forEach((item) => {
         item.style.transform = "unset";
     });
-    carouselImage[currSlide].style.transform = `translateX(-${100}%)`
+    carouselImage[currSlide].style.transform = `translateX(-${(currSlide) * 100}%)`
     previousDot.style.backgroundColor = 'grey';
     dot[currSlide].style.backgroundColor = '#012a4a';
     previousDot = dot[currSlide];

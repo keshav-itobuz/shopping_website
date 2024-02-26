@@ -30,7 +30,7 @@ export function sendEmail(otp, userName, email) {
 export function Verification(event, otpInput, otp, userData) {
     event.preventDefault();
     if (Number(otpInput.value) === otp) {
-        let obj = JSON.parse(localStorage.getItem('userData') || '[]')
+        const obj = JSON.parse(localStorage.getItem('userData') || '[]')
         obj.push(userData)
         localStorage.setItem('userData', JSON.stringify(obj));
         alert("Succesfully signed up!!");

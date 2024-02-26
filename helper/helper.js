@@ -4,14 +4,13 @@ export function addToCart(e, container, obj, itemCount) {
 
     if (obj === -1)
         window.location.href = "../login/login.html";
-
     else {
-        let counter = container.querySelector(`[data-counter="${e.target.dataset.add_to_cart}"]`)
-        let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_to_cart}"]`)
+        const counter = container.querySelector(`[data-counter="${e.target.dataset.add_to_cart}"]`)
+        const countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_to_cart}"]`)
         e.target.style.display = "none";
         counter.style.display = "block";
-        let product = dbData.find((value) => value.id === Number(e.target.dataset.add_to_cart));
-        let item = {
+        const product = dbData.find((value) => value.id === Number(e.target.dataset.add_to_cart));
+        const item = {
             id: product.id,
             qty: countDisplay.innerText,
             title: product.title,
@@ -36,11 +35,11 @@ export function addToCart(e, container, obj, itemCount) {
 
 export function addItem(e, container, renderingPage) {
 
-    let countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
+    const countDisplay = container.querySelector(`[data-display="${e.target.dataset.add_item}"]`)
     countDisplay.innerText = Number(countDisplay.innerText) + 1;
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let currentUserCart = currentUser.cartItems;
-    let localStorageIndex = currentUserCart.findIndex((value) => value.id === Number(e.target.dataset.add_item));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUserCart = currentUser.cartItems;
+    const localStorageIndex = currentUserCart.findIndex((value) => value.id === Number(e.target.dataset.add_item));
     currentUserCart[localStorageIndex].qty = Number(countDisplay.innerText);
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
     if (renderingPage === "cart") {
@@ -53,12 +52,12 @@ export function addItem(e, container, renderingPage) {
 
 export function removeItem(e, container, itemCount, renderingPage) {
 
-    let addCartButton = container.querySelector(`[data-add_to_cart="${e.target.dataset.remove_item}"]`)
-    let counter = container.querySelector(`[data-counter="${e.target.dataset.remove_item}"]`)
-    let countDisplay = container.querySelector(`[data-display="${e.target.dataset.remove_item}"]`)
+    const addCartButton = container.querySelector(`[data-add_to_cart="${e.target.dataset.remove_item}"]`)
+    const counter = container.querySelector(`[data-counter="${e.target.dataset.remove_item}"]`)
+    const countDisplay = container.querySelector(`[data-display="${e.target.dataset.remove_item}"]`)
     countDisplay.innerText = Number(countDisplay.innerText) === 0 ? 0 : Number(countDisplay.innerText) - 1;
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let currentUserCart = currentUser.cartItems;
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUserCart = currentUser.cartItems;
     const index = currentUserCart.find(value => value.id === Number(e.target.dataset.remove_item));
 
     if (renderingPage === "cart") {
