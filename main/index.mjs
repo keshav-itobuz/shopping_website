@@ -13,7 +13,6 @@ const searchItems = document.getElementById('searchItems');
 let obj = JSON.parse(localStorage.getItem('currentUser') || -1);
 if (obj === -1)
     window.location.href = "../login/login.html";
-console.log(container)
 
 elementCreator(dbData, container, "all", "main", itemCount);
 

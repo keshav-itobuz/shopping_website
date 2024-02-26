@@ -1,5 +1,7 @@
 const carousel = document.querySelector('.carouselOfImage');
 const dot = document.querySelectorAll('.dot');
+const nextButton = document.getElementById('nextButton');
+const previousButton = document.getElementById('previousButton');
 const imageLink = [
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/5fc9e7a7f342b6a6.jpg?q=20",
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/bd4cf86703c6399a.jpeg?q=20",
@@ -9,43 +11,59 @@ const imageLink = [
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/352e6f0f8034fab5.jpg?q=20",
     "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d05c680ac784bef4.png?q=20"
 ]
-function createCarousel(address) {
 
-    const carouselItem = document.createElement('div');
-    carouselItem.setAttribute('class', 'carouselItem');
+let currSlide = -1;
 
-    const carouselImage = document.createElement('img');
-    carouselImage.setAttribute('src', address);
-    carouselImage.setAttribute('alt', 'carousel Image');
+function createCarousel() {
 
-    carouselItem.appendChild(carouselImage);
-    carousel.appendChild(carouselItem);
+    imageLink.forEach((e) => {
+
+        const carouselImage = document.createElement('img');
+        carouselImage.setAttribute('class', 'carouselImage');
+
+        carouselImage.setAttribute('src', e);
+        carouselImage.setAttribute('alt', 'carousel Image');
+
+        carousel.appendChild(carouselImage);
+    })
 }
 
 let currentIndex = 0;
 let previousDot = dot[0];
 
 
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % imageLink.length;
-    carousel.innerHTML = "";
-    createCarousel(imageLink[currentIndex]);
+createCarousel();
+
+const carouselImage = document.querySelectorAll(".carouselImage");
+
+
+function carouselSlider() {
+    currSlide = (currSlide + 1) % carouselImage.length;
+    carouselImage.forEach((item) => {
+        item.style.transform = "unset";
+    });
+    carouselImage[currSlide].style.transform = `translateX(-${(currSlide) * 100}%)`
     previousDot.style.backgroundColor = 'grey';
-    dot[currentIndex].style.backgroundColor = '#012a4a';
-    previousDot = dot[currentIndex];
+    dot[currSlide].style.backgroundColor = '#012a4a';
+    previousDot = dot[currSlide];
 }
 
-function previousSlide() {
-    currentIndex = (currentIndex - 1 + imageLink.length) % imageLink.length;
-    carousel.innerHTML = "";
-    createCarousel(imageLink[currentIndex]);
-    previousDot.style.backgroundColor = 'grey';
-    dot[currentIndex].style.backgroundColor = '#012a4a';
-    previousDot = dot[currentIndex];
-}
 
-createCarousel(imageLink[currentIndex]);
-previousDot.style.backgroundColor = '#012a4a'
-setInterval(nextSlide, 4000);
-document.getElementById('nextBtn').addEventListener('click', nextSlide);
-document.getElementById('prevBtn').addEventListener('click', previousSlide);
+nextButton.addEventListener("click", () => {
+    carouselSlider();
+})
+
+previousButton.addEventListener("click", () => {
+    currSlide = currSlide === 0 ? carouselImage.length - 1 : (currSlide - 1) % carouselImage.length;
+    carouselImage.forEach((item) => {
+        item.style.transform = "unset";
+    });
+    carouselImage[currSlide].style.transform = `translateX(-${100}%)`
+    previousDot.style.backgroundColor = 'grey';
+    dot[currSlide].style.backgroundColor = '#012a4a';
+    previousDot = dot[currSlide];
+})
+
+setInterval(carouselSlider , 3000)
+
+carouselSlider();

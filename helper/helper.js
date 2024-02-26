@@ -73,6 +73,7 @@ export function removeItem(e, container, itemCount, renderingPage) {
             price.innerText = `$ ${index.price * index.qty}`;
             index.qty--;;
         }
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         location.reload('../cart/cart.mjs');
     }
 
@@ -87,7 +88,8 @@ export function removeItem(e, container, itemCount, renderingPage) {
         else {
             index.qty--;
         }
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    itemCount.innerHTML = currentUser.cartItems.length;
 }
 
