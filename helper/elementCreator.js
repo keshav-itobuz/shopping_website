@@ -31,7 +31,8 @@ function filteredProducts(item, container, itemCount, renderingPage) {
 
     const image = document.createElement('img');
     image.setAttribute("src", item.image);
-    image.setAttribute("alt", "product_image");
+    image.setAttribute("alt", "product Image");
+    image.setAttribute("class" , "productImage")
     card.appendChild(image);
 
     const name = document.createElement('h3');

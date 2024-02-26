@@ -21,11 +21,6 @@ button {
   color: white;
 }
 
-img {
-  height: 150px;
-  width: 150px;
-}
-
 h1,
 h2 {
   color: white;
@@ -81,9 +76,10 @@ form {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px;
   order: 1;
   input {
+    margin: 0;
     padding: 10px;
     width: 100%;
     border: 0;
@@ -118,7 +114,7 @@ form {
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 115px;
+  top: 105px;
   padding: 10px 0;
   background-color: white;
   margin-bottom: 20px;
@@ -154,7 +150,7 @@ form {
 
 .carouselImage {
   width: 100%;
-  object-fit: cover;
+  height: 110px;
 }
 
 #previousButton,
@@ -162,7 +158,7 @@ form {
   background-color: transparent;
   color: gray;
   border: 0;
-  font-size: 38px;
+  font-size: 18px;
   position: absolute;
   z-index: 4;
   bottom: 50%;
@@ -211,6 +207,11 @@ form {
   justify-content: center;
 }
 
+.productImage {
+  aspect-ratio: 1;
+  width: 150px;
+}
+
 #dataContainer {
   min-height: fit-content;
 }
@@ -242,12 +243,15 @@ form {
   background-color: gray;
   display: flex;
   margin-top: 20px;
-  height: 30px;
+  padding: 20px 0;
   align-items: center;
 }
 
 .footerItems {
   display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
   justify-content: space-between;
   font-size: 14px;
   color: white;
@@ -277,7 +281,7 @@ form {
 //-----------login-------
 
 input {
-  padding:20px 10px ;
+  padding: 20px 10px;
   margin: 10px;
   border-radius: 3px;
   outline: none;
@@ -357,18 +361,26 @@ input {
     object-fit: contain;
   }
 
+  #previousButton,
+  #nextButton {
+    font-size: 36px;
+  }
   // categories section
   .categories_container {
-    top: 90px;
+    top: 75px;
   }
   #categories {
     span {
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
   // login page
   .form-section {
     background-color: gray;
+  }
+
+  .footerItems {
+    flex-direction: row;
   }
 }

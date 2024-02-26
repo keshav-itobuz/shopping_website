@@ -44,7 +44,11 @@ function carouselSlider() {
     });
     carouselImage[currSlide].style.transform = `translateX(-${(currSlide) * 100}%)`
     previousDot.style.backgroundColor = 'grey';
+    previousDot.style.borderRadius = "50%";
+    previousDot.style.width = "6px";
     dot[currSlide].style.backgroundColor = '#012a4a';
+    dot[currSlide].style.borderRadius = "5px";
+    dot[currSlide].style.width = "10px";
     previousDot = dot[currSlide];
 }
 
@@ -60,7 +64,11 @@ previousButton.addEventListener("click", () => {
     });
     carouselImage[currSlide].style.transform = `translateX(-${(currSlide) * 100}%)`
     previousDot.style.backgroundColor = 'grey';
+    previousDot.style.borderRadius = "50%";
+    previousDot.style.width = "6px";
     dot[currSlide].style.backgroundColor = '#012a4a';
+    dot[currSlide].style.borderRadius = "5px";
+    dot[currSlide].style.width = "10px";
     previousDot = dot[currSlide];
 })
 
